@@ -67,7 +67,6 @@ edSearchMask=Suchmaske
 gbAdvanced=Erweiterte Optionen
 lbNamedPipe=Named Pipe
 lbCharSet=Charset
-cbUnicode=Unicode
 btConnect=Verbinden
 btCancel=Abbrechen
 btDetails=Details >>
@@ -257,7 +256,7 @@ TEXT133=Karte
 
 
 [MAIN]
-Caption=Quice
+Caption=Truice
 tsQuest=Quest
 tsSearch=Suchen
 lbQuestGiverSearch=Quest Geber

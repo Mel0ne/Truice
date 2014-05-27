@@ -12653,10 +12653,10 @@ object MainForm: TMainForm
           object linkEventAIInfo: TLabel
             Left = 3
             Top = 11
-            Width = 250
+            Width = 270
             Height = 13
             Cursor = crHandPoint
-            Caption = 'http://www.trinitycore.org/w/Creature_ai_scripts_tc2'
+            Caption = 'http://collab.kpsn.org/display/tc/Creature+ai+scripts+tc2'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clNavy
             Font.Height = -11
@@ -23195,10 +23195,10 @@ object MainForm: TMainForm
           object linkSmartAIInfo: TLabel
             Left = 3
             Top = 5
-            Width = 212
+            Width = 220
             Height = 13
             Cursor = crHandPoint
-            Caption = 'http://www.trinitycore.info/Smart_scripts_tc2'
+            Caption = 'http://collab.kpsn.org/display/tc/smart_scripts'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clNavy
             Font.Height = -11
@@ -24088,10 +24088,10 @@ object MainForm: TMainForm
           object linkConditionInfo: TLabel
             Left = 3
             Top = 5
-            Width = 198
+            Width = 229
             Height = 13
             Cursor = crHandPoint
-            Caption = 'http://www.trinitycore.info/Conditions_tc2'
+            Caption = 'http://collab.kpsn.org/display/tc/Conditions+tc2'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clNavy
             Font.Height = -11
@@ -28024,24 +28024,24 @@ object MainForm: TMainForm
     end
   end
   object MyTrinityConnection: TZConnection
-    UTF8StringsAsWideField = True
-    PreprepareSQL = False
-    BeforeConnect = MyTrinityConnectionBeforeConnect
+    ControlsCodePage = cCP_UTF16
+    AutoEncodeStrings = True
+    HostName = 'localhost'
     Port = 3306
     Database = 'world'
-    Protocol = 'mysql-5'
-    Left = 632
-    Top = 8
+    User = 'root'
+    Protocol = 'mysql'
+    Left = 136
+    Top = 272
   end
   object MyQuery: TZQuery
     Connection = MyTrinityConnection
-    Params = <>
-    Left = 656
-    Top = 8
+    Left = 416
+    Top = 272
   end
   object pmQuest: TPopupMenu
-    Left = 789
-    Top = 9
+    Left = 613
+    Top = 273
     object nEditQuest: TMenuItem
       Caption = 'Edit Quest'
       OnClick = btEditQuestClick
@@ -28069,8 +28069,8 @@ object MainForm: TMainForm
     end
   end
   object MainMenu: TMainMenu
-    Left = 760
-    Top = 8
+    Left = 552
+    Top = 272
     object nFile: TMenuItem
       Caption = 'File'
       object nReconnect: TMenuItem
@@ -28153,25 +28153,22 @@ object MainForm: TMainForm
   end
   object MyTempQuery: TZQuery
     Connection = MyTrinityConnection
-    Params = <>
-    Left = 680
-    Top = 8
+    Left = 480
+    Top = 280
   end
   object MyLootQuery: TZQuery
     Connection = MyTrinityConnection
-    Params = <>
-    Left = 709
-    Top = 9
+    Left = 557
+    Top = 217
   end
   object MyQueryAll: TZQuery
     Connection = MyTrinityConnection
-    Params = <>
-    Left = 733
-    Top = 9
+    Left = 621
+    Top = 217
   end
   object pmCreature: TPopupMenu
-    Left = 385
-    Top = 10
+    Left = 177
+    Top = 218
     object nEditCreature: TMenuItem
       Caption = 'Edit Creature'
       OnClick = btEditCreatureClick
@@ -28196,8 +28193,8 @@ object MainForm: TMainForm
     end
   end
   object pmGO: TPopupMenu
-    Left = 409
-    Top = 10
+    Left = 233
+    Top = 218
     object nEditGO: TMenuItem
       Caption = 'Edit GO'
       OnClick = btEditCreatureClick
@@ -28219,8 +28216,8 @@ object MainForm: TMainForm
   end
   object pmBrowseSite: TPopupMenu
     AutoPopup = False
-    Left = 433
-    Top = 10
+    Left = 289
+    Top = 218
     object pmwowhead: TMenuItem
       Caption = 'wowhead'
       OnClick = pmSiteClick
@@ -28243,8 +28240,8 @@ object MainForm: TMainForm
     end
   end
   object pmItem: TPopupMenu
-    Left = 457
-    Top = 10
+    Left = 353
+    Top = 218
     object nEditItem: TMenuItem
       Caption = 'Edit Item'
       OnClick = btEditItemClick
@@ -28266,18 +28263,17 @@ object MainForm: TMainForm
   end
   object DataSource: TDataSource
     DataSet = MySQLQuery
-    Left = 817
-    Top = 10
+    Left = 681
+    Top = 218
   end
   object MySQLQuery: TZQuery
     Connection = MyTrinityConnection
-    Params = <>
-    Left = 481
-    Top = 10
+    Left = 409
+    Top = 218
   end
   object ActionList1: TActionList
-    Left = 504
-    Top = 9
+    Left = 480
+    Top = 217
     object BrowseURL1: TBrowseURL
       Category = 'Internet'
       Caption = '&Browse URL'
@@ -28293,21 +28289,20 @@ object MainForm: TMainForm
     ProxyIgnoreList = '<local>'
     OnDoneStream = JvHttpUrlGrabberDoneStream
     OnError = JvHttpUrlGrabberError
-    Left = 528
-    Top = 9
+    Left = 32
+    Top = 273
   end
   object ZSQLProcessor: TZSQLProcessor
-    Params = <>
     Connection = MyTrinityConnection
     Delimiter = ';'
-    Left = 608
-    Top = 9
+    Left = 224
+    Top = 273
   end
   object Timer1: TTimer
     Interval = 60000
     OnTimer = Timer1Timer
-    Left = 552
-    Top = 8
+    Left = 368
+    Top = 272
   end
   object sHintManager1: TsHintManager
     HintKind.Bevel = 0
@@ -28326,13 +28321,13 @@ object MainForm: TMainForm
     HintKind.Font.Style = []
     Predefinitions = shComicsTransparent
     SkinSection = 'HINT'
-    Left = 584
-    Top = 8
+    Left = 304
+    Top = 272
   end
   object Timer2: TTimer
     Interval = 300
     OnTimer = Timer2Timer
-    Left = 360
-    Top = 16
+    Left = 120
+    Top = 216
   end
 end

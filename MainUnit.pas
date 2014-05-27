@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, ExtCtrls, ComCtrls, DB, DBCFile,  MyDataModule,
-  Menus, Registry, ShellAPI, TnTComCtrls,
+  Menus, Registry, ShellAPI,
   CheckQuestThreadUnit, Buttons, About, xpman, ActnList, ExtActns, Mask, Grids, TextFieldEditorUnit,
   JvExComCtrls, JvListView, JvExMask, JvToolEdit, DBGrids, JvExDBGrids, JvDBGrid, JvComponentBase,
   JvUrlListGrabber, JvUrlGrabbers, JvExControls, JvLinkLabel, ZAbstractRODataset, ZAbstractDataset,
@@ -16,7 +16,7 @@ const
   VERSION_1   = '1'; //*10000
   VERSION_2   = '3'; //*100
   VERSION_3   = '8';
-  VERSION_4   = '2';
+  VERSION_4   = '3';
   VERSION_EXE = VERSION_1 + '.' + VERSION_2 + '.' + VERSION_3 + '.' + VERSION_4;
 
   SCRIPT_TAB_NO_QUEST       = 6;
@@ -1736,7 +1736,6 @@ type
       Selected: Boolean);
     procedure lvcrNPCTrainerSelectItem(Sender: TObject; Item: TListItem;
       Selected: Boolean);
-    procedure MyTrinityConnectionBeforeConnect(Sender: TObject);
     procedure btCreatureLootAddClick(Sender: TObject);
     procedure btCreatureLootUpdClick(Sender: TObject);
     procedure btCreatureLootDelClick(Sender: TObject);
@@ -2057,6 +2056,12 @@ type
       Shift: TShiftState);
     procedure edcytarget_typeKeyUp(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure SetScriptEditFields(pfx: string; lvList: TJvListView);
+    function ScriptSQLScript(lvList: TJvListView; tn, id: string): string;
+    {movement}
+    procedure ScriptAdd(pfx: string; lvList: TJvListView);
+    procedure ScriptDel(lvList: TJvListView);
+    procedure ScriptUpd(pfx: string; lvList: TJvListView);
 
   private
     { Private declarations }
@@ -2066,7 +2071,7 @@ type
     Thread: TCheckQuestThread;
     ItemColors: array [0..7] of integer;
     edit : TJvComboEdit;
-    lvQuickList : TTntListView;
+    lvQuickList: TListView;
 
     procedure GetValueFromSimpleList(Sender: TObject; TextId: integer;
       Name: String; Sort: boolean);
@@ -2084,7 +2089,6 @@ type
     procedure LoadQuestLocales(QuestID: integer);
     procedure LoadQuestGiverInfo(objtype: string; entry: string);
     procedure LoadQuestTakerInfo(objtype: string; entry: string);
-    procedure SetScriptEditFields(pfx: string; lvList: TJvListView);
     procedure ClearFields(Where: TType);
     procedure SetDefaultFields(Where: TType);
     procedure ShowSettings(n: integer);
@@ -2159,10 +2163,6 @@ type
     procedure MvmntUpd(pfx: string; lvList: TJvListView);
     procedure MvmntDel(lvList: TJvListView);
     procedure SetMvmntEditFields(pfx: string; lvList: TJvListView);
-
-    procedure ScriptAdd(pfx: string; lvList: TJvListView);
-    procedure ScriptDel(lvList: TJvListView);
-    procedure ScriptUpd(pfx: string; lvList: TJvListView);
 
     procedure EnchAdd(pfx: string; lvList: TJvListView);
     procedure EnchDel(lvList: TJvListView);
@@ -2247,7 +2247,6 @@ type
     procedure LoadItemInvolvedIn(Id: string);
     function GetValueFromDBC(Name: string; id: Cardinal; idx_str: integer = 1): WideString;
     function GetZoneOrSortAcronym(ZoneOrSort: integer): string;
-    function ScriptSQLScript(lvList: TJvListView; tn, id: string): string;
     procedure GetSomeFlags(Sender: TObject; What: string);
     function GetActionParamHint(ActionType, ParamNo: integer): string;
 
@@ -2283,10 +2282,6 @@ type
     procedure EditMouseWheelDown(Sender: TObject; Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
 
 end;
-   {Funcktionlib.dll}
-   function LoadLocales():string; external 'Functionlib.dll';
-   procedure ShowHourGlassCursor; external 'Functionlib.dll';
-
 
 var
   MainForm: TMainForm;
@@ -2321,7 +2316,7 @@ procedure TMainForm.btSearchClick(Sender: TObject);
 begin
   SearchQuest();
   with lvQuest do
-    if Items.Count>0 then
+    if Items.Count > 0 then
     begin
       SetFocus;
       Selected := Items[0];
@@ -2567,7 +2562,7 @@ begin
   ItemColors[2] := $00FF1E;
   ItemColors[3] := $DD7000;
   ItemColors[4] := $EE35A3;
-  ItemColors[5] := $0080ff;
+  ItemColors[5] := $0080FF;
   ItemColors[6] := $80CCE5;
   ItemColors[7] := $80CCE5; //heirloom color according to wowhead CSS
   {translation stuff}
@@ -3795,13 +3790,13 @@ begin
       begin
         if MessageDlg(Format(dmMain.Text[137],[CreateVer(LastVer)]), mtConfirmation, mbYesNoCancel, 0, mbYes) = mrYes then
         begin
-          BrowseURL1.URL := 'http://github.com/Faq/Truice/downloads';
+          BrowseURL1.URL := 'http://www.trinitycore.org/f/files/file/8-truice';
           BrowseURL1.Execute;
         end;
       end
       else
       begin
-        if Globalflag then
+        if GlobalFlag then
           ShowMessage(dmMain.Text[138]);
       end;
     finally
@@ -4599,8 +4594,6 @@ begin
 end;
 
 procedure TMainForm.tsCreatureEquipTemplateShow(Sender: TObject);
-var
-  itemEntry: integer;
 begin
   if (edceentry.Text='') then edceentry.Text := edctEntry.Text;
   if (edceid.Text='') then edceid.Text := '0';
@@ -4608,8 +4601,6 @@ begin
   if (edceitemEntry2.Text='') then edceitemEntry2.Text := '0';
   if (edceitemEntry3.Text='') then edceitemEntry3.Text := '0';
   if (edceWDBVerified.Text='') then edceWDBVerified.Text := '0';
-  if Assigned(lvclCreatureLocation.Selected) and (StrToIntDef(edclequipment_id.Text,0)<>0) then
-    itemEntry := StrToIntDef(edclequipment_id.Text,0);
 end;
 
 procedure TMainForm.tsCreatureModelInfoShow(Sender: TObject);
@@ -5219,7 +5210,7 @@ begin
     begin
       if not Assigned(lvQuickList) then
       begin
-        lvQuickList := TTntListView.Create(Self);
+        lvQuickList := TListView.Create(Self);
         lvQuickList.Visible := false;
         lvQuickList.Parent := TJvComboEdit(Sender).parent.parent;
         lvQuickList.ViewStyle := TViewStyle(vsReport);
@@ -7798,20 +7789,6 @@ begin
   end;
 end;
 
-procedure TMainForm.MyTrinityConnectionBeforeConnect(Sender: TObject);
-begin
-  try
-//    MyTrinityConnection.Options.Charset := ReadFromRegistry(CurrentUser, '', 'Charset', tpString);
-  except
-//    MyTrinityConnection.Options.Charset := '';
-  end;
-  try
-//    MyTrinityConnection.Options.UseUnicode := ReadFromRegistry(CurrentUser, '', 'Unicode', tpBool);
-  except
-//    MyTrinityConnection.Options.UseUnicode := false;
-  end;
-end;
-
 procedure TMainForm.btCreatureLootAddClick(Sender: TObject);
 begin
   LootAdd('edco', lvcoCreatureLoot);
@@ -7826,7 +7803,7 @@ procedure TMainForm.btCreatureModelSearchClick(Sender: TObject);
 begin
   SearchCreatureModelInfo();
   with lvCreatureModelSearch do
-    if Items.Count>0 then
+    if Items.Count > 0 then
     begin
       SetFocus;
       Selected := Items[0];
@@ -9575,19 +9552,19 @@ end;
 
 procedure TMainForm.linkEventAIInfoClick(Sender: TObject);
 begin
-  BrowseURL1.URL := 'http://www.trinitycore.org/w/Creature_ai_scripts_tc2';
+  BrowseURL1.URL := 'http://collab.kpsn.org/display/tc/Creature+ai+scripts+tc2';
   BrowseURL1.Execute;
 end;
 
 procedure TMainForm.linkSmartAIInfoClick(Sender: TObject);
 begin
-  BrowseURL1.URL := 'http://www.trinitycore.org/w/Creature_ai_scripts_tc2';
+  BrowseURL1.URL := 'http://collab.kpsn.org/display/tc/Creature+ai+scripts+tc2';
   BrowseURL1.Execute;
 end;
 
 procedure TMainForm.linkConditionInfoClick(Sender: TObject);
 begin
-  BrowseURL1.URL := 'http://www.trinitycore.info/Conditions_tc2';
+  BrowseURL1.URL := 'http://collab.kpsn.org/display/tc/Conditions+tc2';
   BrowseURL1.Execute;
 end;
 
@@ -9653,21 +9630,21 @@ end;
 
 procedure TMainForm.EditThis(objtype, entry: string);
 begin
-  if objtype='creature' then
+  if objtype = 'creature' then
   begin
     PageControl1.ActivePageIndex := 1;
     PageControl3.ActivePageIndex := 1;
     edctEntry.Text := entry;
     edctEntry.Button.Click;
   end;
-  if objtype='gameobject' then
+  if objtype = 'gameobject' then
   begin
     PageControl1.ActivePageIndex := 2;
     PageControl4.ActivePageIndex := 1;
     edgtEntry.Text := entry;
     edgtEntry.Button.Click;
   end;
-  if objtype='item' then
+  if objtype = 'item' then
   begin
     PageControl1.ActivePageIndex := 3;
     PageControl5.ActivePageIndex := 1;
@@ -9789,7 +9766,7 @@ begin
     end;
     MyTempQuery.Close;
   finally
-    list.SaveToFile(dmMain.ProgramDir+'CSV\useSpells.csv');
+    list.SaveToFile(dmMain.ProgramDir + 'CSV\useSpells.csv');
     list.Free;
     ShowMessage('Spell List Rebuilded Successfully');
   end;
@@ -9945,7 +9922,7 @@ end;
 
 procedure TMainForm.btgeGOGuidAddClick(Sender: TObject);
 begin
-  if Trim(edgeGOguid.Text)<>'' then
+  if Trim(edgeGOguid.Text) <> '' then
   begin
     with lvGameEventGO.Items.Add do
     begin
@@ -9972,8 +9949,8 @@ var
   id: string;
 begin
   id := edotZone.Text;
-  if id<>'' then
-  LoadQueryToListView(Format('SELECT flt.*, i.`name` FROM `fishing_loot_template`'+
+  if id <> '' then
+    LoadQueryToListView(Format('SELECT flt.*, i.`name` FROM `fishing_loot_template`' +
      ' flt LEFT OUTER JOIN `item_template` i ON i.`entry` = flt.`item`'+
      ' WHERE (flt.`entry`=%s)',[id]), lvotFishingLoot);
 end;
@@ -9997,7 +9974,7 @@ procedure TMainForm.edSearchItemSubclassButtonClick(Sender: TObject);
 begin
   GetValueFromSimpleList2(Sender, 131, 'ItemSubClass', false, edSearchItemClass.Text);
 end;
-     
+
 procedure TMainForm.edqtZoneOrSortChange(Sender: TObject);
 begin
   if StrToIntDef(edqtZoneOrSort.Text,0)>=0 then rbqtZoneID.Checked := true else
@@ -10016,7 +9993,7 @@ procedure TMainForm.btSearchPageTextClick(Sender: TObject);
 begin
   SearchPageText();
   with lvSearchPageText do
-    if Items.Count>0 then
+    if Items.Count > 0 then
     begin
       SetFocus;
       Selected := Items[0];
@@ -10036,7 +10013,7 @@ end;
 
 procedure TMainForm.btScriptPageTextClick(Sender: TObject);
 begin
-  PageControl6.ActivePageIndex := SCRIPT_TAB_NO_OTHER;  
+  PageControl6.ActivePageIndex := SCRIPT_TAB_NO_OTHER;
 end;
 
 procedure TMainForm.CompletePageTextScript;
@@ -10134,7 +10111,7 @@ var
   entry: string;
 begin
   entry := TCustomEdit(Sender).Text;
-  MyTempQuery.SQL.Text := Format('SELECT * FROM `page_text` WHERE `entry`=%s',[entry]);
+  MyTempQuery.SQL.Text := Format('SELECT * FROM `page_text` WHERE `entry`=%s', [entry]);
   MyTempQuery.Open;
   if not MyTempQuery.Eof then
     FillFields(MyTempQuery, PFX_PAGE_TEXT);
@@ -10370,14 +10347,12 @@ begin
         edgtdata0.EditLabel.Caption := 'creatureID';
         edgtdata1.EditLabel.Caption := 'charges';
       end;
-
     22:
      begin
         edgtdata0.EditLabel.Caption := 'spell';
         edgtdata1.EditLabel.Caption := 'charges';
         edgtdata2.EditLabel.Caption := 'partyOnly';
       end;
-
     23:
      begin
         edgtdata0.EditLabel.Caption := 'minLevel';
@@ -10485,7 +10460,7 @@ begin
             lbcyevent_param2.Caption := 'HPMax%';
             lbcyevent_param3.Caption := 'RepeatMin';
             lbcyevent_param4.Caption := 'RepeatMax';
-            lbcyevent_type.Hint := 'Health Percentage';
+            lbcyevent_type.Hint := 'At Health Pct';
             edcyevent_type.Hint := lbcyevent_type.Hint;
         end;
     3:  //SMART_EVENT_MANA_PCT
@@ -10494,7 +10469,7 @@ begin
             lbcyevent_param2.Caption := 'ManaMax%';
             lbcyevent_param3.Caption := 'RepeatMin';
             lbcyevent_param4.Caption := 'RepeatMax';
-            lbcyevent_type.Hint := 'Mana Percentage';
+            lbcyevent_type.Hint := 'At Mana Pct';
             edcyevent_type.Hint := lbcyevent_type.Hint;
         end;
     4:  //SMART_EVENT_AGGRO
@@ -10503,15 +10478,15 @@ begin
             lbcyevent_param2.Caption := '';
             lbcyevent_param3.Caption := '';
             lbcyevent_param4.Caption := '';
-            lbcyevent_type.Hint := 'On Creature Aggro';
+            lbcyevent_type.Hint := 'On Aggro';
             edcyevent_type.Hint := lbcyevent_type.Hint;
         end;
     5:  //SMART_EVENT_KILL
         begin
             lbcyevent_param1.Caption := 'CooldownMin0';
             lbcyevent_param2.Caption := 'CooldownMax1';
-            lbcyevent_param3.Caption := 'playerOnly2';
-            lbcyevent_param4.Caption := 'else creature entry3';
+            lbcyevent_param3.Caption := 'Player only (0 / 1) (if 0, set entry in param 4)';
+            lbcyevent_param4.Caption := 'If param3 is 0, this is creature entry to kill';
             lbcyevent_type.Hint := 'On Creature Kill';
             edcyevent_type.Hint := lbcyevent_type.Hint;
         end;
@@ -10557,14 +10532,14 @@ begin
             lbcyevent_param2.Caption := 'MaxRange';
             lbcyevent_param3.Caption := 'CooldownMin';
             lbcyevent_param4.Caption := 'CooldownMax';
-            lbcyevent_type.Hint := 'On Target In Distance Out of Combat';
+            lbcyevent_type.Hint := 'On Target In Distance Line of Sight Out of Combat';
             edcyevent_type.Hint := lbcyevent_type.Hint;
         end;
     11:  //SMART_EVENT_RESPAWN
         begin
-            lbcyevent_param1.Caption := 'type';
-            lbcyevent_param2.Caption := 'MapId';
-            lbcyevent_param3.Caption := 'ZoneId';
+            lbcyevent_param1.Caption := 'Respawn type (0 = none, 1 = map, 2 = area)';
+            lbcyevent_param2.Caption := 'Map id (if type is 1)';
+            lbcyevent_param3.Caption := 'Area id (if type is 2)';
             lbcyevent_param4.Caption := '';
             lbcyevent_type.Hint := 'On Creature/Gameobject Respawn';
             edcyevent_type.Hint := lbcyevent_type.Hint;
@@ -10578,13 +10553,15 @@ begin
             lbcyevent_type.Hint := 'On Target Health Percentage';
             edcyevent_type.Hint := lbcyevent_type.Hint;
         end;
-    13:  //SMART_EVENT_TARGET_CASTING
+    13:  //SMART_EVENT_VICTIM_CASTING
         begin
             lbcyevent_param1.Caption := 'RepeatMin';
             lbcyevent_param2.Caption := 'RepeatMax';
-            lbcyevent_param3.Caption := '';
+            lbcyevent_param3.Caption := 'Spellid';
             lbcyevent_param4.Caption := '';
-            lbcyevent_type.Hint := 'On Target Casting Spell';
+            lbcyevent_param3.Hint := 'if 0, check is done for all spells';
+            edcyevent_param3.Hint := lbcyevent_param3.Hint;
+            lbcyevent_type.Hint := 'On Victim Casting Spell';
             edcyevent_type.Hint := lbcyevent_type.Hint;
         end;
     14:  //SMART_EVENT_FRIENDLY_HEALTH
@@ -10602,7 +10579,7 @@ begin
             lbcyevent_param2.Caption := 'RepeatMin';
             lbcyevent_param3.Caption := 'RepeatMax';
             lbcyevent_param4.Caption := '';
-            lbcyevent_type.Hint := '';
+            lbcyevent_type.Hint := 'On Friendly Crowd Controlled';
             edcyevent_type.Hint := lbcyevent_type.Hint;
         end;
     16:  //SMART_EVENT_FRIENDLY_MISSING_BUFF
@@ -10611,7 +10588,7 @@ begin
             lbcyevent_param2.Caption := 'Radius';
             lbcyevent_param3.Caption := 'RepeatMin';
             lbcyevent_param4.Caption := 'RepeatMax';
-            lbcyevent_type.Hint := 'On Friendly Lost Buff';
+            lbcyevent_type.Hint := 'On Friendly Missing Buff';
             edcyevent_type.Hint := lbcyevent_type.Hint;
         end;
     17:  //SMART_EVENT_SUMMONED_UNIT
@@ -11687,18 +11664,18 @@ begin
             lbcyaction_param4.Caption := '';
             lbcyaction_param5.Caption := '';
             lbcyaction_param6.Caption := '';
-            lbcyaction_type.Hint := 'Do nothing';
+            lbcyaction_type.Hint := 'Do nothing (dont use)';
             edcyaction_type.Hint := lbcyaction_type.Hint;
         end;
     1:  //SMART_ACTION_TALK
         begin
-            lbcyaction_param1.Caption := 'Creature_text.groupid';
+            lbcyaction_param1.Caption := 'creature_text.groupid';
             lbcyaction_param2.Caption := 'duration (in ms)';
             lbcyaction_param3.Caption := '';
             lbcyaction_param4.Caption := '';
             lbcyaction_param5.Caption := '';
             lbcyaction_param6.Caption := '';
-            lbcyaction_param2.Hint := 'duration to wait before TEXT_OVER event is triggered';
+            lbcyaction_param2.Hint := 'Duration to wait before SMART_EVENT_TEXT_OVER event is triggered';
             edcyaction_param2.Hint := lbcyaction_param2.Hint;
             lbcyaction_type.Hint := '';
             edcyaction_type.Hint := lbcyaction_type.Hint;
@@ -11731,8 +11708,8 @@ begin
         end;
     4:  //SMART_ACTION_SOUND
         begin
-            lbcyaction_param1.Caption := 'SoundId';
-            lbcyaction_param2.Caption := 'onlySelf';
+            lbcyaction_param1.Caption := 'Sound id';
+            lbcyaction_param2.Caption := 'onlySelf (0/1)';
             lbcyaction_param3.Caption := '';
             lbcyaction_param4.Caption := '';
             lbcyaction_param5.Caption := '';
@@ -11742,7 +11719,7 @@ begin
         end;
     5:  //SMART_ACTION_PLAY_EMOTE
         begin
-            lbcyaction_param1.Caption := 'EmoteId';
+            lbcyaction_param1.Caption := 'Emote id';
             lbcyaction_param2.Caption := '';
             lbcyaction_param3.Caption := '';
             lbcyaction_param4.Caption := '';
@@ -11753,7 +11730,7 @@ begin
         end;
     6:  //SMART_ACTION_FAIL_QUEST
         begin
-            lbcyaction_param1.Caption := 'QuestID';
+            lbcyaction_param1.Caption := 'Quest id';
             lbcyaction_param2.Caption := '';
             lbcyaction_param3.Caption := '';
             lbcyaction_param4.Caption := '';
@@ -11764,7 +11741,7 @@ begin
         end;
     7:  //SMART_ACTION_ADD_QUEST
         begin
-            lbcyaction_param1.Caption := 'QuestID';
+            lbcyaction_param1.Caption := 'Quest id';
             lbcyaction_param2.Caption := '';
             lbcyaction_param3.Caption := '';
             lbcyaction_param4.Caption := '';
@@ -11781,7 +11758,7 @@ begin
             lbcyaction_param4.Caption := '';
             lbcyaction_param5.Caption := '';
             lbcyaction_param6.Caption := '';
-            lbcyaction_type.Hint := 'React State. Can be Aggressive, Passive or Defensive.';
+            lbcyaction_type.Hint := 'React State. Can be aggressive (0), defensive (1) or passive (2).';
             edcyaction_type.Hint := lbcyaction_type.Hint;
         end;
     9:  //SMART_ACTION_ACTIVATE_GOBJECT
@@ -11885,8 +11862,8 @@ begin
         end;
     18:  //SMART_ACTION_SET_UNIT_FLAG
         begin
-            lbcyaction_param1.Caption := 'unit_flags';
-            lbcyaction_param2.Caption := 'Target';
+            lbcyaction_param1.Caption := 'creature_template.unit_flags';
+            lbcyaction_param2.Caption := 'Type. If 0, targets creature_template.unit_flags, if > 0, targets creature_template.unit_flags2';
             lbcyaction_param3.Caption := '';
             lbcyaction_param4.Caption := '';
             lbcyaction_param5.Caption := '';
@@ -11899,7 +11876,7 @@ begin
     19:  //SMART_ACTION_REMOVE_UNIT_FLAG
         begin
             lbcyaction_param1.Caption := 'unit_flags';
-            lbcyaction_param2.Caption := 'Target';
+            lbcyaction_param2.Caption := 'Type. If 0, targets creature_template.unit_flags, if > 0, targets creature_template.unit_flags2';
             lbcyaction_param3.Caption := '';
             lbcyaction_param4.Caption := '';
             lbcyaction_param5.Caption := '';
@@ -11911,7 +11888,7 @@ begin
         end;
     20:  //SMART_ACTION_AUTO_ATTACK
         begin
-            lbcyaction_param1.Caption := 'AllowAttackState';
+            lbcyaction_param1.Caption := '0/1';
             lbcyaction_param2.Caption := '';
             lbcyaction_param3.Caption := '';
             lbcyaction_param4.Caption := '';
@@ -11924,7 +11901,7 @@ begin
         end;
     21:  //SMART_ACTION_ALLOW_COMBAT_MOVEMENT
         begin
-            lbcyaction_param1.Caption := 'AllowCombatMovement';
+            lbcyaction_param1.Caption := '0/1';
             lbcyaction_param2.Caption := '';
             lbcyaction_param3.Caption := '';
             lbcyaction_param4.Caption := '';
@@ -11974,7 +11951,7 @@ begin
         end;
     25:  //SMART_ACTION_FLEE_FOR_ASSIST
         begin
-            lbcyaction_param1.Caption := '0 or 1';
+            lbcyaction_param1.Caption := '0 / 1. 0 = no "<name> starts fleeing" messages, 1 = message.';
             lbcyaction_param2.Caption := '';
             lbcyaction_param3.Caption := '';
             lbcyaction_param4.Caption := '';
@@ -11996,16 +11973,8 @@ begin
             lbcyaction_type.Hint := '';
             edcyaction_type.Hint := lbcyaction_type.Hint;
         end;
-    27:  //SMART_ACTION_CALL_CASTEDCREATUREORGO
+    27:  //NONE
         begin
-            lbcyaction_param1.Caption := 'Creature_template.entry';
-            lbcyaction_param2.Caption := 'SpellId';
-            lbcyaction_param3.Caption := '';
-            lbcyaction_param4.Caption := '';
-            lbcyaction_param5.Caption := '';
-            lbcyaction_param6.Caption := '';
-            lbcyaction_type.Hint := '';
-            edcyaction_type.Hint := lbcyaction_type.Hint;
         end;
     28:  //SMART_ACTION_REMOVEAURASFROMSPELL
         begin
@@ -12944,6 +12913,28 @@ begin
             lbcyaction_type.Hint := '0 - disable, 1 - enable Enables or disables creature movement';
             edcyaction_type.Hint := lbcyaction_type.Hint;
         end;
+    111:  //SMART_ACTION_GAME_EVENT_STOP
+        begin
+            lbcyaction_param1.Caption := 'Game event id';
+            lbcyaction_param2.Caption := '';
+            lbcyaction_param3.Caption := '';
+            lbcyaction_param4.Caption := '';
+            lbcyaction_param5.Caption := '';
+            lbcyaction_param6.Caption := '';
+            lbcyaction_type.Hint := '';
+            edcyaction_type.Hint := lbcyaction_type.Hint;
+    end;
+    112:  //SMART_ACTION_GAME_EVENT_START
+        begin
+            lbcyaction_param1.Caption := 'Game event id';
+            lbcyaction_param2.Caption := '';
+            lbcyaction_param3.Caption := '';
+            lbcyaction_param4.Caption := '';
+            lbcyaction_param5.Caption := '';
+            lbcyaction_param6.Caption := '';
+            lbcyaction_type.Hint := '';
+            edcyaction_type.Hint := lbcyaction_type.Hint;
+        end;
     end;
     SAI_Action := t;
 end;
@@ -13259,7 +13250,7 @@ begin
     25:  //SMART_TARGET_CLOSEST_ENEMY
         begin
             lbcytarget_param1.Caption := 'maxDist';
-            lbcytarget_param2.Caption := '';
+            lbcytarget_param2.Caption := 'playerOnly (0/1)';
             lbcytarget_param3.Caption := '';
             lbcytarget_x.Caption := '';
             lbcytarget_y.Caption := '';
@@ -13273,13 +13264,13 @@ begin
     26:  //SMART_TARGET_CLOSEST_FRIENDLY
         begin
             lbcytarget_param1.Caption := 'maxDist';
-            lbcytarget_param2.Caption := '';
+            lbcytarget_param2.Caption := 'playerOnly (0/1)';
             lbcytarget_param3.Caption := '';
             lbcytarget_x.Caption := '';
             lbcytarget_y.Caption := '';
             lbcytarget_z.Caption := '';
             lbcytarget_o.Caption := '';
-            lbcytarget_param1.Hint := 'Friendly target (creature or player) within maxDist';
+            lbcytarget_param1.Hint := 'Any friendly unit (creature, player or pet) within maxDist';
             edcytarget_param1.Hint := lbcytarget_param1.Hint;
             lbcytarget_type.Hint := '';
             edcytarget_type.Hint := lbcytarget_type.Hint;
@@ -13357,7 +13348,7 @@ end;
 
 procedure TMainForm.lvQuickListMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
 begin
-  lvQuickList.Selected := TTntListItem(lvQuickList.GetItemAt(x,y));
+  lvQuickList.Selected := TListItem(lvQuickList.GetItemAt(x,y));
 end;
 
 procedure TMainForm.lvqtTakerTemplateChange(Sender: TObject; Item: TListItem; Change: TItemChange);
