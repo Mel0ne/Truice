@@ -429,9 +429,6 @@ type
     edclspawntimesecs: TLabeledEdit;
     edclspawndist: TLabeledEdit;
     edclcurrentwaypoint: TLabeledEdit;
-    edclspawn_position_x: TLabeledEdit;
-    edclspawn_position_y: TLabeledEdit;
-    edclspawn_position_z: TLabeledEdit;
     edclcurhealth: TLabeledEdit;
     edclcurmana: TLabeledEdit;
     edclMovementType: TLabeledEdit;
@@ -1340,7 +1337,12 @@ type
     lbceitemEntry2: TLabel;
     lbceitemEntry3: TLabel;
     edclphaseMask: TLabeledEdit;
+    edclPhaseId: TLabeledEdit;
+    edclPhaseGroup: TLabeledEdit;
     edglphaseMask: TLabeledEdit;
+    edglPhaseId: TLabeledEdit;
+    edglPhaseGroup: TLabeledEdit;
+    edglVerifiedBuild: TLabeledEdit;
     edgeholiday: TLabeledEdit;
     edgtIconName: TLabeledEdit;
     edctdmg_multiplier: TLabeledEdit;

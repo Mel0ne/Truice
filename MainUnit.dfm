@@ -38,10 +38,6 @@ object MainForm: TMainForm
     object tsQuest: TTabSheet
       Caption = 'Quest'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object pnQuestTop: TPanel
         Left = 0
         Top = 0
@@ -442,7 +438,6 @@ object MainForm: TMainForm
                 Width = 300
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 1
@@ -5118,7 +5113,6 @@ object MainForm: TMainForm
                 Width = 80
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -5181,7 +5175,6 @@ object MainForm: TMainForm
                 Width = 70
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 1
@@ -5379,7 +5372,6 @@ object MainForm: TMainForm
                 Width = 180
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -5430,7 +5422,6 @@ object MainForm: TMainForm
                 Width = 160
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 1
@@ -5458,10 +5449,6 @@ object MainForm: TMainForm
         object tsLocalesQuest: TTabSheet
           Caption = 'Locales Quest'
           ImageIndex = 9
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object gbLocalesQuest: TsGroupBox
             Left = 3
             Top = 3
@@ -5632,10 +5619,6 @@ object MainForm: TMainForm
           Caption = 'SQL-Script Tab'
           ImageIndex = 2
           OnShow = tsScriptTabShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           DesignSize = (
             884
             620)
@@ -5694,7 +5677,7 @@ object MainForm: TMainForm
         Top = 25
         Width = 892
         Height = 648
-        ActivePage = tsCreatureEquipTemplate
+        ActivePage = tsCreatureLocation
         Align = alClient
         MultiLine = True
         TabOrder = 0
@@ -5950,7 +5933,6 @@ object MainForm: TMainForm
                 Width = 112
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 1
@@ -8470,7 +8452,6 @@ object MainForm: TMainForm
                 Width = 100
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -8499,9 +8480,9 @@ object MainForm: TMainForm
             Width = 79
             Height = 21
             Hint = 'Unique guid of each creatures.'
-            EditLabel.Width = 40
+            EditLabel.Width = 20
             EditLabel.Height = 13
-            EditLabel.Caption = 'edclguid'
+            EditLabel.Caption = 'guid'
             TabOrder = 1
           end
           object edclid: TLabeledEdit
@@ -8521,9 +8502,9 @@ object MainForm: TMainForm
             Width = 79
             Height = 21
             Hint = 'Position of the creature on X axis'
-            EditLabel.Width = 67
+            EditLabel.Width = 47
             EditLabel.Height = 13
-            EditLabel.Caption = 'edclposition_x'
+            EditLabel.Caption = 'position_x'
             TabOrder = 4
           end
           object edclposition_y: TLabeledEdit
@@ -8532,9 +8513,9 @@ object MainForm: TMainForm
             Width = 79
             Height = 21
             Hint = 'Position of the creature on Y axis'
-            EditLabel.Width = 67
+            EditLabel.Width = 47
             EditLabel.Height = 13
-            EditLabel.Caption = 'edclposition_y'
+            EditLabel.Caption = 'position_y'
             TabOrder = 5
           end
           object edclposition_z: TLabeledEdit
@@ -8543,9 +8524,9 @@ object MainForm: TMainForm
             Width = 79
             Height = 21
             Hint = 'Position of the creature on Z axis'
-            EditLabel.Width = 67
+            EditLabel.Width = 47
             EditLabel.Height = 13
-            EditLabel.Caption = 'edclposition_z'
+            EditLabel.Caption = 'position_z'
             TabOrder = 6
           end
           object edclorientation: TLabeledEdit
@@ -8557,9 +8538,9 @@ object MainForm: TMainForm
               'Orientation of the creature as defined in mathematics, on 6 digi' +
               'ts.'#13#10'North is 0*Pi => 0.00000'#13#10'East is Pi/2 => 1.57079'#13#10'South is' +
               ' Pi => 3.14159'#13#10'West is 3*Pi/2 => 4.71238'
-            EditLabel.Width = 69
+            EditLabel.Width = 49
             EditLabel.Height = 13
-            EditLabel.Caption = 'edclorientation'
+            EditLabel.Caption = 'orientation'
             TabOrder = 7
           end
           object edclspawntimesecs: TLabeledEdit
@@ -8568,9 +8549,9 @@ object MainForm: TMainForm
             Width = 81
             Height = 21
             Hint = 'Delay before creature respawns in seconds'
-            EditLabel.Width = 92
+            EditLabel.Width = 72
             EditLabel.Height = 13
-            EditLabel.Caption = 'edclspawntimesecs'
+            EditLabel.Caption = 'spawntimesecs'
             TabOrder = 9
           end
           object edclspawndist: TLabeledEdit
@@ -8582,9 +8563,9 @@ object MainForm: TMainForm
               'Spawndist[ance] means how far the mob/npc can walk around, '#13#10'and' +
               ' in what range it can spawn.'#13#10'MovementType must be set to 1, if ' +
               'any value higher then 0 is given.'
-            EditLabel.Width = 67
+            EditLabel.Width = 47
             EditLabel.Height = 13
-            EditLabel.Caption = 'edclspawndist'
+            EditLabel.Caption = 'spawndist'
             TabOrder = 10
           end
           object edclcurrentwaypoint: TLabeledEdit
@@ -8593,46 +8574,10 @@ object MainForm: TMainForm
             Width = 81
             Height = 21
             Hint = 'If creature has waypoints, value of its current waypoint.'
-            EditLabel.Width = 95
+            EditLabel.Width = 75
             EditLabel.Height = 13
-            EditLabel.Caption = 'edclcurrentwaypoint'
+            EditLabel.Caption = 'currentwaypoint'
             TabOrder = 11
-          end
-          object edclspawn_position_x: TLabeledEdit
-            Left = 375
-            Top = 448
-            Width = 81
-            Height = 21
-            Hint = 'Position of the creature'#39's spawn point on X axis.'
-            EditLabel.Width = 104
-            EditLabel.Height = 13
-            EditLabel.Caption = 'edclspawn_position_x'
-            TabOrder = 12
-            Visible = False
-          end
-          object edclspawn_position_y: TLabeledEdit
-            Left = 463
-            Top = 448
-            Width = 81
-            Height = 21
-            Hint = 'Position of the creature'#39's spawn point on Y axis.'
-            EditLabel.Width = 104
-            EditLabel.Height = 13
-            EditLabel.Caption = 'edclspawn_position_y'
-            TabOrder = 13
-            Visible = False
-          end
-          object edclspawn_position_z: TLabeledEdit
-            Left = 551
-            Top = 448
-            Width = 81
-            Height = 21
-            Hint = 'Position of the creature'#39's spawn point on Z axis.'
-            EditLabel.Width = 104
-            EditLabel.Height = 13
-            EditLabel.Caption = 'edclspawn_position_z'
-            TabOrder = 14
-            Visible = False
           end
           object edclcurhealth: TLabeledEdit
             Left = 8
@@ -8640,10 +8585,10 @@ object MainForm: TMainForm
             Width = 81
             Height = 21
             Hint = 'Current creature'#39's health points.'
-            EditLabel.Width = 64
+            EditLabel.Width = 44
             EditLabel.Height = 13
-            EditLabel.Caption = 'edclcurhealth'
-            TabOrder = 16
+            EditLabel.Caption = 'curhealth'
+            TabOrder = 13
           end
           object edclcurmana: TLabeledEdit
             Left = 96
@@ -8651,20 +8596,20 @@ object MainForm: TMainForm
             Width = 81
             Height = 21
             Hint = 'Current creature'#39's mana points.'
-            EditLabel.Width = 61
+            EditLabel.Width = 41
             EditLabel.Height = 13
-            EditLabel.Caption = 'edclcurmana'
-            TabOrder = 17
+            EditLabel.Caption = 'curmana'
+            TabOrder = 14
           end
           object edclMovementType: TLabeledEdit
             Left = 198
             Top = 447
             Width = 81
             Height = 21
-            EditLabel.Width = 94
+            EditLabel.Width = 74
             EditLabel.Height = 13
-            EditLabel.Caption = 'edclMovementType'
-            TabOrder = 18
+            EditLabel.Caption = 'MovementType'
+            TabOrder = 15
           end
           object btScriptCreatureLocation: TButton
             Left = 8
@@ -8672,7 +8617,7 @@ object MainForm: TMainForm
             Width = 169
             Height = 25
             Caption = 'Show Creature Location Script'
-            TabOrder = 19
+            TabOrder = 16
             OnClick = btScriptCreatureClick
           end
           object btScriptCreatureLocationCustomToAll: TButton
@@ -8684,7 +8629,7 @@ object MainForm: TMainForm
               'Add / Replace entered values to all creatures at list.'#13#10'Press th' +
               'is button to generate UPDATE script for this.'
             Caption = 'Add to all'
-            TabOrder = 20
+            TabOrder = 17
             Visible = False
             OnClick = btScriptCreatureLocationCustomToAllClick
           end
@@ -8698,29 +8643,29 @@ object MainForm: TMainForm
               'ipt for location, then execute it first.'
             Anchors = [akTop, akRight]
             Caption = 'Show FULL Creature Location Script'
-            TabOrder = 21
+            TabOrder = 18
             OnClick = btFullScriptCreatureLocationClick
           end
           object edclequipment_id: TLabeledEdit
             Left = 728
             Top = 400
-            Width = 121
+            Width = 81
             Height = 21
-            EditLabel.Width = 83
+            EditLabel.Width = 63
             EditLabel.Height = 13
-            EditLabel.Caption = 'edclequipment_id'
+            EditLabel.Caption = 'equipment_id'
             TabOrder = 8
             OnDblClick = edclequipment_idDblClick
           end
           object edclmodelid: TLabeledEdit
             Left = 729
-            Top = 448
-            Width = 121
+            Top = 447
+            Width = 80
             Height = 21
-            EditLabel.Width = 56
+            EditLabel.Width = 36
             EditLabel.Height = 13
-            EditLabel.Caption = 'edclmodelid'
-            TabOrder = 15
+            EditLabel.Caption = 'modelid'
+            TabOrder = 12
           end
           object edclmap: TJvComboEdit
             Left = 200
@@ -8761,14 +8706,34 @@ object MainForm: TMainForm
             OnButtonClick = GetMap
           end
           object edclphaseMask: TLabeledEdit
-            Left = 640
-            Top = 448
+            Left = 642
+            Top = 447
             Width = 81
             Height = 21
-            EditLabel.Width = 75
+            EditLabel.Width = 55
             EditLabel.Height = 13
-            EditLabel.Caption = 'edclphaseMask'
-            TabOrder = 22
+            EditLabel.Caption = 'phaseMask'
+            TabOrder = 19
+          end
+          object edclPhaseId: TLabeledEdit
+            Left = 463
+            Top = 447
+            Width = 80
+            Height = 21
+            EditLabel.Width = 39
+            EditLabel.Height = 13
+            EditLabel.Caption = 'PhaseId'
+            TabOrder = 25
+          end
+          object edclPhaseGroup: TLabeledEdit
+            Left = 552
+            Top = 447
+            Width = 78
+            Height = 21
+            EditLabel.Width = 59
+            EditLabel.Height = 13
+            EditLabel.Caption = 'PhaseGroup'
+            TabOrder = 26
           end
           object edclspawnMask: TJvComboEdit
             Left = 642
@@ -8804,7 +8769,7 @@ object MainForm: TMainForm
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-            TabOrder = 23
+            TabOrder = 20
             OnButtonClick = GetSpawnMask
           end
           object edclnpcflag: TJvComboEdit
@@ -8839,7 +8804,7 @@ object MainForm: TMainForm
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-            TabOrder = 24
+            TabOrder = 21
             OnButtonClick = edctnpcflagButtonClick
           end
           object edclunit_flags: TJvComboEdit
@@ -8874,7 +8839,7 @@ object MainForm: TMainForm
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-            TabOrder = 25
+            TabOrder = 22
             OnButtonClick = GetUnitFlags
           end
           object edclVerifiedBuild: TLabeledEdit
@@ -8882,10 +8847,10 @@ object MainForm: TMainForm
             Top = 488
             Width = 81
             Height = 21
-            EditLabel.Width = 78
+            EditLabel.Width = 58
             EditLabel.Height = 13
-            EditLabel.Caption = 'edclVerifiedBuild'
-            TabOrder = 27
+            EditLabel.Caption = 'VerifiedBuild'
+            TabOrder = 24
           end
           object edcldynamicflags: TJvComboEdit
             Left = 375
@@ -8919,7 +8884,7 @@ object MainForm: TMainForm
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-            TabOrder = 26
+            TabOrder = 23
             OnButtonClick = GetCreatureDynamicFlags
           end
         end
@@ -8958,7 +8923,6 @@ object MainForm: TMainForm
                 Width = 120
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 1
@@ -9548,7 +9512,6 @@ object MainForm: TMainForm
                 Width = 200
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -9962,7 +9925,6 @@ object MainForm: TMainForm
                 Width = 200
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -10375,7 +10337,6 @@ object MainForm: TMainForm
                 Width = 200
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -10782,7 +10743,6 @@ object MainForm: TMainForm
                 Width = 100
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -11191,7 +11151,6 @@ object MainForm: TMainForm
                 Width = 200
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -11869,7 +11828,6 @@ object MainForm: TMainForm
                 Width = 48
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -12313,10 +12271,6 @@ object MainForm: TMainForm
           Caption = 'Involved in'
           ImageIndex = 11
           OnShow = tsCreatureUsedShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object pcCreatureInfo: TPageControl
             Left = 0
             Top = 41
@@ -12359,7 +12313,6 @@ object MainForm: TMainForm
                     Width = 80
                   end>
                 HideSelection = False
-                Items.ItemData = {}
                 ReadOnly = True
                 RowSelect = True
                 TabOrder = 0
@@ -12416,7 +12369,6 @@ object MainForm: TMainForm
                     Width = 80
                   end>
                 HideSelection = False
-                Items.ItemData = {}
                 ReadOnly = True
                 RowSelect = True
                 TabOrder = 0
@@ -12473,7 +12425,6 @@ object MainForm: TMainForm
                     Width = 80
                   end>
                 HideSelection = False
-                Items.ItemData = {}
                 ReadOnly = True
                 RowSelect = True
                 TabOrder = 0
@@ -12508,10 +12459,6 @@ object MainForm: TMainForm
         object tsCreatureSmartAI: TTabSheet
           Caption = 'SmartAI'
           ImageIndex = 18
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object lbctGoToSmartAI: TLabel
             Left = 15
             Top = 52
@@ -12945,7 +12892,6 @@ object MainForm: TMainForm
                 Width = 36
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -13714,10 +13660,6 @@ object MainForm: TMainForm
           Caption = 'Script'
           ImageIndex = 3
           OnShow = tsCreatureScriptShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           DesignSize = (
             884
             602)
@@ -13780,10 +13722,6 @@ object MainForm: TMainForm
     object tsGameObject: TTabSheet
       Caption = 'Game Object'
       ImageIndex = 3
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel8: TPanel
         Left = 0
         Top = 0
@@ -13798,7 +13736,7 @@ object MainForm: TMainForm
         Top = 25
         Width = 892
         Height = 648
-        ActivePage = tsGOLoot
+        ActivePage = tsGOLocation
         Align = alClient
         TabOrder = 1
         object tsSearchGO: TTabSheet
@@ -14063,7 +14001,6 @@ object MainForm: TMainForm
                 Caption = 'castbarcaption_loc*'
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 1
@@ -15060,7 +14997,6 @@ object MainForm: TMainForm
                 Width = 100
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -15166,9 +15102,9 @@ object MainForm: TMainForm
             Top = 488
             Width = 81
             Height = 21
-            EditLabel.Width = 61
+            EditLabel.Width = 41
             EditLabel.Height = 13
-            EditLabel.Caption = 'edglrotation0'
+            EditLabel.Caption = 'rotation0'
             TabOrder = 8
           end
           object edglrotation1: TLabeledEdit
@@ -15176,9 +15112,9 @@ object MainForm: TMainForm
             Top = 488
             Width = 81
             Height = 21
-            EditLabel.Width = 61
+            EditLabel.Width = 41
             EditLabel.Height = 13
-            EditLabel.Caption = 'edglrotation1'
+            EditLabel.Caption = 'rotation1'
             TabOrder = 9
           end
           object edglrotation2: TLabeledEdit
@@ -15186,9 +15122,9 @@ object MainForm: TMainForm
             Top = 488
             Width = 81
             Height = 21
-            EditLabel.Width = 61
+            EditLabel.Width = 41
             EditLabel.Height = 13
-            EditLabel.Caption = 'edglrotation2'
+            EditLabel.Caption = 'rotation2'
             TabOrder = 10
           end
           object edglrotation3: TLabeledEdit
@@ -15196,9 +15132,9 @@ object MainForm: TMainForm
             Top = 488
             Width = 81
             Height = 21
-            EditLabel.Width = 61
+            EditLabel.Width = 41
             EditLabel.Height = 13
-            EditLabel.Caption = 'edglrotation3'
+            EditLabel.Caption = 'rotation3'
             TabOrder = 11
           end
           object edglspawntimesecs: TLabeledEdit
@@ -15206,9 +15142,9 @@ object MainForm: TMainForm
             Top = 528
             Width = 81
             Height = 21
-            EditLabel.Width = 92
+            EditLabel.Width = 72
             EditLabel.Height = 13
-            EditLabel.Caption = 'edglspawntimesecs'
+            EditLabel.Caption = 'spawntimesecs'
             TabOrder = 12
           end
           object edglanimprogress: TLabeledEdit
@@ -15216,9 +15152,9 @@ object MainForm: TMainForm
             Top = 528
             Width = 81
             Height = 21
-            EditLabel.Width = 82
+            EditLabel.Width = 62
             EditLabel.Height = 13
-            EditLabel.Caption = 'edglanimprogress'
+            EditLabel.Caption = 'animprogress'
             TabOrder = 13
           end
           object edglstate: TLabeledEdit
@@ -15226,9 +15162,19 @@ object MainForm: TMainForm
             Top = 528
             Width = 81
             Height = 21
-            EditLabel.Width = 43
+            EditLabel.Width = 23
             EditLabel.Height = 13
-            EditLabel.Caption = 'edglstate'
+            EditLabel.Caption = 'state'
+            TabOrder = 19
+          end
+          object edglVerifiedBuild: TLabeledEdit
+            Left = 464
+            Top = 528
+            Width = 81
+            Height = 21
+            EditLabel.Width = 58
+            EditLabel.Height = 13
+            EditLabel.Caption = 'VerifiedBuild'
             TabOrder = 14
           end
           object btFullScriptGOLocation: TButton
@@ -15287,6 +15233,26 @@ object MainForm: TMainForm
             EditLabel.Width = 55
             EditLabel.Height = 13
             EditLabel.Caption = 'phaseMask'
+            TabOrder = 20
+          end
+          object edglPhaseId: TLabeledEdit
+            Left = 552
+            Top = 488
+            Width = 79
+            Height = 21
+            EditLabel.Width = 39
+            EditLabel.Height = 13
+            EditLabel.Caption = 'PhaseId'
+            TabOrder = 21
+          end
+          object edglPhaseGroup: TLabeledEdit
+            Left = 637
+            Top = 488
+            Width = 79
+            Height = 21
+            EditLabel.Width = 59
+            EditLabel.Height = 13
+            EditLabel.Caption = 'PhaseGroup'
             TabOrder = 17
           end
           object edglspawnMask: TJvComboEdit
@@ -15565,7 +15531,6 @@ object MainForm: TMainForm
                 Width = 200
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -15742,10 +15707,6 @@ object MainForm: TMainForm
           Caption = 'Involved in'
           ImageIndex = 5
           OnShow = tsGOInvolvedInShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object pcGameObjectInfo: TPageControl
             Left = 0
             Top = 41
@@ -15788,7 +15749,6 @@ object MainForm: TMainForm
                     Width = 80
                   end>
                 HideSelection = False
-                Items.ItemData = {}
                 ReadOnly = True
                 RowSelect = True
                 TabOrder = 0
@@ -15844,7 +15804,6 @@ object MainForm: TMainForm
                     Width = 80
                   end>
                 HideSelection = False
-                Items.ItemData = {}
                 ReadOnly = True
                 RowSelect = True
                 TabOrder = 0
@@ -15900,7 +15859,6 @@ object MainForm: TMainForm
                     Width = 80
                   end>
                 HideSelection = False
-                Items.ItemData = {}
                 ReadOnly = True
                 RowSelect = True
                 TabOrder = 0
@@ -15935,10 +15893,6 @@ object MainForm: TMainForm
         object tsGOSmartAI: TTabSheet
           Caption = 'GO SmartAI'
           ImageIndex = 7
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object lbgtGotoSmartAI: TLabel
             Left = 15
             Top = 67
@@ -15963,10 +15917,6 @@ object MainForm: TMainForm
           Caption = 'Script'
           ImageIndex = 3
           OnShow = tsGOScriptShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           DesignSize = (
             884
             620)
@@ -16020,10 +15970,6 @@ object MainForm: TMainForm
     object tsItem: TTabSheet
       Caption = 'Item'
       ImageIndex = 3
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel9: TPanel
         Left = 0
         Top = 0
@@ -16473,7 +16419,6 @@ object MainForm: TMainForm
             Font.Name = 'MS Sans Serif'
             Font.Style = []
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             ParentFont = False
@@ -20222,7 +20167,6 @@ object MainForm: TMainForm
                 Width = 200
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -20642,7 +20586,6 @@ object MainForm: TMainForm
                 Width = 200
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -21062,7 +21005,6 @@ object MainForm: TMainForm
                 Width = 200
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -21473,7 +21415,6 @@ object MainForm: TMainForm
                 Width = 200
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -21890,7 +21831,6 @@ object MainForm: TMainForm
                 Width = 200
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -22320,7 +22260,6 @@ object MainForm: TMainForm
                 Width = 90
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -22421,7 +22360,6 @@ object MainForm: TMainForm
               item
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -22453,10 +22391,6 @@ object MainForm: TMainForm
           Caption = 'Involved in'
           ImageIndex = 8
           OnShow = tsItemInvolvedInShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object Panel22: TPanel
             Left = 0
             Top = 0
@@ -22508,7 +22442,6 @@ object MainForm: TMainForm
                     Width = 80
                   end>
                 HideSelection = False
-                Items.ItemData = {}
                 ReadOnly = True
                 RowSelect = True
                 TabOrder = 0
@@ -22564,7 +22497,6 @@ object MainForm: TMainForm
                     Width = 80
                   end>
                 HideSelection = False
-                Items.ItemData = {}
                 ReadOnly = True
                 RowSelect = True
                 TabOrder = 0
@@ -22620,7 +22552,6 @@ object MainForm: TMainForm
                     Width = 80
                   end>
                 HideSelection = False
-                Items.ItemData = {}
                 ReadOnly = True
                 RowSelect = True
                 TabOrder = 0
@@ -22676,7 +22607,6 @@ object MainForm: TMainForm
                     Width = 80
                   end>
                 HideSelection = False
-                Items.ItemData = {}
                 ReadOnly = True
                 RowSelect = True
                 TabOrder = 0
@@ -22732,7 +22662,6 @@ object MainForm: TMainForm
                     Width = 80
                   end>
                 HideSelection = False
-                Items.ItemData = {}
                 ReadOnly = True
                 RowSelect = True
                 TabOrder = 0
@@ -22759,10 +22688,6 @@ object MainForm: TMainForm
           Caption = 'Script'
           ImageIndex = 3
           OnShow = tsItemScriptShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           DesignSize = (
             884
             620)
@@ -22816,10 +22741,6 @@ object MainForm: TMainForm
     object SmartAI: TTabSheet
       Caption = 'SmartAI'
       ImageIndex = 5
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object PageControl9: TPageControl
         Left = 0
         Top = 25
@@ -23316,7 +23237,6 @@ object MainForm: TMainForm
               item
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -23811,10 +23731,6 @@ object MainForm: TMainForm
           Caption = 'Script'
           ImageIndex = 1
           OnShow = tsSmartAIScriptShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           DesignSize = (
             873
             620)
@@ -23877,10 +23793,6 @@ object MainForm: TMainForm
     object Conditions: TTabSheet
       Caption = 'Conditions'
       ImageIndex = 5
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object PageControl10: TPageControl
         Left = 0
         Top = 25
@@ -24241,7 +24153,6 @@ object MainForm: TMainForm
                 Width = 135
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -24494,10 +24405,6 @@ object MainForm: TMainForm
           Caption = 'Script'
           ImageIndex = 1
           OnShow = tsConditionsScriptShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           DesignSize = (
             873
             620)
@@ -24560,10 +24467,6 @@ object MainForm: TMainForm
     object tsOther: TTabSheet
       Caption = 'Other'
       ImageIndex = 4
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel12: TPanel
         Left = 0
         Top = 0
@@ -24832,7 +24735,6 @@ object MainForm: TMainForm
                 Width = 200
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 2
@@ -25102,7 +25004,6 @@ object MainForm: TMainForm
                 Width = 80
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -25907,7 +25808,6 @@ object MainForm: TMainForm
                 end>
               Enabled = False
               HideSelection = False
-              Items.ItemData = {}
               ReadOnly = True
               RowSelect = True
               TabOrder = 0
@@ -25951,7 +25851,6 @@ object MainForm: TMainForm
                 end>
               Enabled = False
               HideSelection = False
-              Items.ItemData = {}
               ReadOnly = True
               RowSelect = True
               TabOrder = 2
@@ -26105,7 +26004,6 @@ object MainForm: TMainForm
                   Caption = 'world_event'
                 end>
               HideSelection = False
-              Items.ItemData = {}
               ReadOnly = True
               RowSelect = True
               TabOrder = 0
@@ -26414,10 +26312,6 @@ object MainForm: TMainForm
           Caption = 'Script'
           ImageIndex = 3
           OnShow = tsOtherScriptShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           DesignSize = (
             884
             620)
@@ -26471,10 +26365,6 @@ object MainForm: TMainForm
     object tsChars: TTabSheet
       Caption = 'Character'
       ImageIndex = 6
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel1: TPanel
         Left = 0
         Top = 0
@@ -26641,7 +26531,6 @@ object MainForm: TMainForm
                 Width = 60
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 1
@@ -27803,7 +27692,6 @@ object MainForm: TMainForm
                 Width = 250
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 2
@@ -27868,10 +27756,6 @@ object MainForm: TMainForm
           Caption = 'Script'
           ImageIndex = 2
           OnShow = tsCharacterScriptShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           DesignSize = (
             884
             620)
@@ -27925,10 +27809,6 @@ object MainForm: TMainForm
     object tsSQL: TTabSheet
       Caption = 'SQL'
       ImageIndex = 5
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel14: TPanel
         Left = 0
         Top = 0
@@ -27948,10 +27828,6 @@ object MainForm: TMainForm
         TabOrder = 1
         object tsSQL1: TTabSheet
           Caption = 'Recordset1'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object Panel15: TPanel
             Left = 0
             Top = 0
@@ -28024,8 +27900,8 @@ object MainForm: TMainForm
     end
   end
   object MyTrinityConnection: TZConnection
-    ControlsCodePage = cCP_UTF16
-    AutoEncodeStrings = True
+    UTF8StringsAsWideField = True
+    PreprepareSQL = False
     HostName = 'localhost'
     Port = 3306
     Database = 'world'
@@ -28036,6 +27912,7 @@ object MainForm: TMainForm
   end
   object MyQuery: TZQuery
     Connection = MyTrinityConnection
+    Params = <>
     Left = 416
     Top = 272
   end
@@ -28153,16 +28030,19 @@ object MainForm: TMainForm
   end
   object MyTempQuery: TZQuery
     Connection = MyTrinityConnection
+    Params = <>
     Left = 480
     Top = 280
   end
   object MyLootQuery: TZQuery
     Connection = MyTrinityConnection
+    Params = <>
     Left = 557
     Top = 217
   end
   object MyQueryAll: TZQuery
     Connection = MyTrinityConnection
+    Params = <>
     Left = 621
     Top = 217
   end
@@ -28268,6 +28148,7 @@ object MainForm: TMainForm
   end
   object MySQLQuery: TZQuery
     Connection = MyTrinityConnection
+    Params = <>
     Left = 409
     Top = 218
   end
@@ -28293,6 +28174,7 @@ object MainForm: TMainForm
     Top = 273
   end
   object ZSQLProcessor: TZSQLProcessor
+    Params = <>
     Connection = MyTrinityConnection
     Delimiter = ';'
     Left = 224
