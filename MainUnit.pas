@@ -1672,6 +1672,7 @@ type
     edgtdata29: TLabeledEdit;
     edgtdata30: TLabeledEdit;
     edgtdata31: TLabeledEdit;
+    edcvtype: TLabeledEdit;
     procedure FormActivate(Sender: TObject);
     procedure btSearchClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -7502,7 +7503,8 @@ begin
       edcvmaxcount.Text := SubItems[2];
       edcvincrtime.Text := SubItems[3];
       edcvExtendedCost.Text := SubItems[4];
-      edcvVerifiedBuild.Text := SubItems[5];
+      edcvtype.Text := SubItems[5];
+      edcvVerifiedBuild.Text := SubItems[6];
     end;
   end;
 end;
@@ -8501,6 +8503,8 @@ begin
     SubItems.Add(edcvmaxcount.Text);
     SubItems.Add(edcvincrtime.Text);
     SubItems.Add(edcvExtendedCost.Text);
+    //cataclysm
+    SubItems.Add(edcvtype.Text);
     SubItems.Add(edcvVerifiedBuild.Text);
   end;
 end;
@@ -8517,7 +8521,9 @@ begin
       SubItems[2] := edcvmaxcount.Text;
       SubItems[3] := edcvincrtime.Text;
       SubItems[4] := edcvExtendedCost.Text;
-      SubItems[5] := edcvVerifiedBuild.Text;
+      //cataclysm
+      SubItems[5] := edcvtype.Text;
+      SubItems[6] := edcvVerifiedBuild.Text;
     end;
   end;
 end;
@@ -8607,31 +8613,36 @@ begin
   begin
     for i := 0 to lvcvNPCVendor.Items.Count - 2 do
     begin
-      Values := Values + Format('(%s, %s, %s, %s, %s, %s, %s);',[
+      Values := Values + Format('(%s, %s, %s, %s, %s, %s, %s, %s),'#13#10,[
         lvcvNPCVendor.Items[i].Caption,
         lvcvNPCVendor.Items[i].SubItems[0],
         lvcvNPCVendor.Items[i].SubItems[1],
         lvcvNPCVendor.Items[i].SubItems[2],
         lvcvNPCVendor.Items[i].SubItems[3],
         lvcvNPCVendor.Items[i].SubItems[4],
-        lvcvNPCVendor.Items[i].SubItems[5]
+        //cataclysm
+        lvcvNPCVendor.Items[i].SubItems[5],
+        lvcvNPCVendor.Items[i].SubItems[6]
+
       ]);
     end;
     i := lvcvNPCVendor.Items.Count - 1;
-    Values := Values + Format('(%s, %s, %s, %s, %s, %s, %s);',[
+    Values := Values + Format('(%s, %s, %s, %s, %s, %s, %s, %s);'#13#10'',[
       lvcvNPCVendor.Items[i].Caption,
       lvcvNPCVendor.Items[i].SubItems[0],
       lvcvNPCVendor.Items[i].SubItems[1],
       lvcvNPCVendor.Items[i].SubItems[2],
       lvcvNPCVendor.Items[i].SubItems[3],
       lvcvNPCVendor.Items[i].SubItems[4],
-      lvcvNPCVendor.Items[i].SubItems[5]
+      //cataclysm
+      lvcvNPCVendor.Items[i].SubItems[5],
+      lvcvNPCVendor.Items[i].SubItems[6]
     ]);
   end;
   if Values<>'' then
   begin
     mectScript.Text := Format('DELETE FROM `npc_vendor` WHERE (`entry`=%s);'#13#10+
-      'INSERT INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `ExtendedCost`, `VerifiedBuild`) VALUES '#13#10'%s',[entry, Values])
+      'INSERT INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `ExtendedCost`, `type`, `VerifiedBuild`) VALUES '#13#10'%s',[entry, Values])
   end
   else
     mectScript.Text := Format('DELETE FROM `npc_vendor` WHERE (`entry`=%s);',[entry]);

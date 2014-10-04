@@ -1,4 +1,4 @@
 Truice DB Structure last checked against revision
-fb6e635c8094a03348ddfaee4cc9d17638079a38 (01/10/2014) 
-[2014_10_01_00_world.sql]
+a73cee97e298c251c71774f3507997df40b5f957 (04/10/2014) 
+[2014_10_04_01_world_434.sql]
 
