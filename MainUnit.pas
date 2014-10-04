@@ -356,6 +356,7 @@ type
     edctmodelid1: TLabeledEdit;
     edctmodelid2: TLabeledEdit;
     edctname: TLabeledEdit;
+    edctfemaleName: TLabeledEdit;
     edctsubname: TLabeledEdit;
     edctminlevel: TLabeledEdit;
     edctmaxlevel: TLabeledEdit;
@@ -399,11 +400,9 @@ type
     edctScriptName: TLabeledEdit;
     gbTrainer: TGroupBox;
     lbcttrainer_type: TLabel;
-    lbcttrainer_spell: TLabel;
     lbctclass: TLabel;
     lbctrace: TLabel;
     edcttrainer_type: TJvComboEdit;
-    edcttrainer_spell: TJvComboEdit;
     edcttrainer_class: TJvComboEdit;
     edcttrainer_race: TJvComboEdit;
     gbArmorSpeed: TGroupBox;
@@ -1210,7 +1209,9 @@ type
     edctunit_flags2: TJvComboEdit;
     lbctunit_flags2: TLabel;
     edcttype_flags: TJvComboEdit;
+    edcttype_flags2: TJvComboEdit;
     lbcttype_flags: TLabel;
+    edctexp_unk: TLabeledEdit;
     edctdynamicflags: TJvComboEdit;
     lbctdynamicflags: TLabel;
     edgtflags: TJvComboEdit;
@@ -1655,10 +1656,13 @@ type
     lbitflagsCustom: TLabel;
     edctHealthModifier: TLabeledEdit;
     edctManaModifier: TLabeledEdit;
+    edctHealthModifierExtra: TLabeledEdit;
+    edctManaModifierExtra: TLabeledEdit;
     edctDamageModifier: TLabeledEdit;
     edctExperienceModifier: TLabeledEdit;
     edctRangeVariance: TLabeledEdit;
     edctBaseVariance: TLabeledEdit;
+    GroupBox4: TGroupBox;
     procedure FormActivate(Sender: TObject);
     procedure btSearchClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -1990,6 +1994,7 @@ type
     procedure GetUnitFlags2(Sender: TObject);
     procedure GetFlagsExtra(Sender: TObject);
     procedure GetCreatureFlag1(Sender: TObject);
+    procedure GetCreatureFlag2(Sender: TObject);
     procedure GetCreatureDynamicFlags(Sender: TObject);
     procedure GetGOFlags(Sender: TObject);
     procedure GetMovementType(Sender: TObject);
@@ -2083,13 +2088,6 @@ type
       Shift: TShiftState);
     procedure edcytarget_typeKeyUp(Sender: TObject; var Key: Word;
       Shift: TShiftState);
-    procedure SetScriptEditFields(pfx: string; lvList: TJvListView);
-    function ScriptSQLScript(lvList: TJvListView; tn, id: string): string;
-    {movement}
-    procedure ScriptAdd(pfx: string; lvList: TJvListView);
-    procedure ScriptDel(lvList: TJvListView);
-    procedure ScriptUpd(pfx: string; lvList: TJvListView);
-
   private
     { Private declarations }
     Spells: TList;
@@ -5110,6 +5108,11 @@ end;
 procedure TMainForm.GetCreatureFlag1(Sender: TObject);
 begin
   GetSomeFlags(Sender, 'CreatureFlag1');
+end;
+
+procedure TMainForm.GetCreatureFlag2(Sender: TObject);
+begin
+  GetSomeFlags(Sender, 'CreatureFlag2');
 end;
 
 procedure TMainForm.GetSomeFlags(Sender: TObject; What: string);

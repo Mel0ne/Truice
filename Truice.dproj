@@ -44,7 +44,7 @@
 		<PropertyGroup Condition="'$(Base)'!=''">
 			<Icon_MainIcon>Truice_Icon.ico</Icon_MainIcon>
 			<Manifest_File>None</Manifest_File>
-			<VerInfo_Build>7</VerInfo_Build>
+			<VerInfo_Build>4</VerInfo_Build>
 			<VerInfo_Locale>1033</VerInfo_Locale>
 			<VerInfo_Keys>CompanyName=;FileDescription=Truice - Trinity DB Editor;FileVersion=1.3.8.4;InternalName=Truice;LegalCopyright=@chaosua 2013-2014 @Faq 2012-2013 @Ishigure 2010 ©indomit 2007-2009 (Quice);LegalTrademarks=indomit™;OriginalFilename=Truice.exe;ProductName=Truice;ProductVersion=1.3.8.4;Comments=compiled by chaosua</VerInfo_Keys>
 			<VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
