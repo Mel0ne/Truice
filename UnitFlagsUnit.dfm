@@ -3,8 +3,8 @@ object UnitFlagsForm: TUnitFlagsForm
   Top = 279
   BorderStyle = bsDialog
   Caption = 'Unit Flags'
-  ClientHeight = 274
-  ClientWidth = 361
+  ClientHeight = 462
+  ClientWidth = 473
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,23 +15,21 @@ object UnitFlagsForm: TUnitFlagsForm
   Position = poMainFormCenter
   OnCreate = FormCreate
   DesignSize = (
-    361
-    274)
+    473
+    462)
   PixelsPerInch = 96
   TextHeight = 13
   object Bevel: TBevel
     Left = 0
-    Top = 232
-    Width = 361
-    Height = 42
+    Top = 416
+    Width = 473
+    Height = 46
     Align = alBottom
     Shape = bsTopLine
-    ExplicitTop = 267
-    ExplicitWidth = 530
   end
   object btCancel: TButton
-    Left = 278
-    Top = 241
+    Left = 390
+    Top = 429
     Width = 75
     Height = 25
     Anchors = [akRight, akBottom]
@@ -39,10 +37,12 @@ object UnitFlagsForm: TUnitFlagsForm
     Caption = 'Cancel'
     ModalResult = 2
     TabOrder = 0
+    ExplicitLeft = 278
+    ExplicitTop = 241
   end
   object btOK: TButton
-    Left = 197
-    Top = 241
+    Left = 309
+    Top = 429
     Width = 75
     Height = 25
     Anchors = [akRight, akBottom]
@@ -51,23 +51,28 @@ object UnitFlagsForm: TUnitFlagsForm
     ModalResult = 1
     TabOrder = 1
     OnClick = btOKClick
+    ExplicitLeft = 197
+    ExplicitTop = 241
   end
   object btCheckAll: TButton
-    Left = 8
-    Top = 241
+    Left = 120
+    Top = 429
     Width = 75
     Height = 25
     Anchors = [akRight, akBottom]
     Caption = 'CheckAll'
     TabOrder = 3
     OnClick = btCheckAllClick
+    ExplicitLeft = 8
+    ExplicitTop = 241
   end
   object clbMain: TCheckListBox
-    Left = 8
-    Top = 8
-    Width = 345
-    Height = 218
-    Columns = 2
+    Left = 0
+    Top = 0
+    Width = 473
+    Height = 423
+    Color = clBtnHighlight
+    Columns = 1
     ItemHeight = 13
     Items.Strings = (
       'UNKNOWN7'
