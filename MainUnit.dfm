@@ -26,7 +26,7 @@ object MainForm: TMainForm
     Top = 0
     Width = 917
     Height = 708
-    ActivePage = tsCreature
+    ActivePage = tsQuest
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -38,10 +38,6 @@ object MainForm: TMainForm
     object tsQuest: TTabSheet
       Caption = 'Quest'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object pnQuestTop: TPanel
         Left = 0
         Top = 0
@@ -56,7 +52,7 @@ object MainForm: TMainForm
         Top = 25
         Width = 909
         Height = 655
-        ActivePage = tsQuestPart2
+        ActivePage = tsQuestPart3
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -442,7 +438,6 @@ object MainForm: TMainForm
                 Width = 300
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 1
@@ -4941,21 +4936,313 @@ object MainForm: TMainForm
               EditLabel.Caption = 'VerifiedBuild'
               TabOrder = 7
             end
-            object edqtUnknown0: TLabeledEdit
-              Left = 320
-              Top = 68
-              Width = 53
+          end
+        end
+        object tsQuestPart3: TTabSheet
+          Caption = 'Quest Part 3.'
+          ImageIndex = 3
+          object GroupBox5: TGroupBox
+            Left = 3
+            Top = 3
+            Width = 886
+            Height = 614
+            Caption = 'Cataclysm data'
+            TabOrder = 0
+            object edqtRewardSkillId: TLabeledEdit
+              Left = 11
+              Top = 36
+              Width = 70
               Height = 21
-              EditLabel.Width = 52
+              EditLabel.Width = 65
               EditLabel.Height = 13
-              EditLabel.Caption = 'Unknown0'
+              EditLabel.Caption = 'RewardSkillId'
+              TabOrder = 0
+            end
+            object edqtMinimapTargetMark: TLabeledEdit
+              Left = 11
+              Top = 76
+              Width = 70
+              Height = 21
+              EditLabel.Width = 94
+              EditLabel.Height = 13
+              EditLabel.Caption = 'MinimapTargetMark'
+              TabOrder = 1
+            end
+            object edqtRewardSkillPoints: TLabeledEdit
+              Left = 11
+              Top = 116
+              Width = 70
+              Height = 21
+              EditLabel.Width = 85
+              EditLabel.Height = 13
+              EditLabel.Caption = 'RewardSkillPoints'
+              TabOrder = 2
+            end
+            object edqtRewardReputationMask: TLabeledEdit
+              Left = 11
+              Top = 164
+              Width = 70
+              Height = 21
+              EditLabel.Width = 115
+              EditLabel.Height = 13
+              EditLabel.Caption = 'RewardReputationMask'
+              TabOrder = 3
+            end
+            object edqtQuestGiverPortrait: TLabeledEdit
+              Left = 11
+              Top = 204
+              Width = 70
+              Height = 21
+              EditLabel.Width = 86
+              EditLabel.Height = 13
+              EditLabel.Caption = 'QuestGiverPortrait'
+              TabOrder = 4
+            end
+            object edqtQuestTurnInPortrait: TLabeledEdit
+              Left = 11
+              Top = 244
+              Width = 70
+              Height = 21
+              EditLabel.Width = 92
+              EditLabel.Height = 13
+              EditLabel.Caption = 'QuestTurnInPortrait'
+              TabOrder = 5
+            end
+            object edqtRequiredSpell: TLabeledEdit
+              Left = 187
+              Top = 28
+              Width = 70
+              Height = 21
+              EditLabel.Width = 66
+              EditLabel.Height = 13
+              EditLabel.Caption = 'RequiredSpell'
+              TabOrder = 6
+            end
+            object edqtRewardCurrencyId1: TLabeledEdit
+              Left = 11
+              Top = 324
+              Width = 70
+              Height = 21
+              EditLabel.Width = 94
+              EditLabel.Height = 13
+              EditLabel.Caption = 'RewardCurrencyId1'
+              TabOrder = 7
+            end
+            object edqtRewardCurrencyId2: TLabeledEdit
+              Left = 11
+              Top = 364
+              Width = 70
+              Height = 21
+              EditLabel.Width = 94
+              EditLabel.Height = 13
+              EditLabel.Caption = 'RewardCurrencyId2'
               TabOrder = 8
+            end
+            object edqtRewardCurrencyId3: TLabeledEdit
+              Left = 11
+              Top = 407
+              Width = 70
+              Height = 21
+              EditLabel.Width = 94
+              EditLabel.Height = 13
+              EditLabel.Caption = 'RewardCurrencyId3'
+              TabOrder = 9
+            end
+            object edqtRewardCurrencyId4: TLabeledEdit
+              Left = 11
+              Top = 444
+              Width = 70
+              Height = 21
+              EditLabel.Width = 94
+              EditLabel.Height = 13
+              EditLabel.Caption = 'RewardCurrencyId4'
+              TabOrder = 10
+            end
+            object edqtRequiredCurrencyId4: TLabeledEdit
+              Left = 331
+              Top = 164
+              Width = 70
+              Height = 21
+              EditLabel.Width = 100
+              EditLabel.Height = 13
+              EditLabel.Caption = 'RequiredCurrencyId4'
+              TabOrder = 11
+            end
+            object edqtRequiredCurrencyCount1: TLabeledEdit
+              Left = 467
+              Top = 36
+              Width = 70
+              Height = 21
+              EditLabel.Width = 119
+              EditLabel.Height = 13
+              EditLabel.Caption = 'RequiredCurrencyCount1'
+              TabOrder = 12
+            end
+            object edqtRewardCurrencyCount1: TLabeledEdit
+              Left = 139
+              Top = 324
+              Width = 70
+              Height = 21
+              EditLabel.Width = 113
+              EditLabel.Height = 13
+              EditLabel.Caption = 'RewardCurrencyCount1'
+              TabOrder = 13
+            end
+            object edqtRewardCurrencyCount2: TLabeledEdit
+              Left = 139
+              Top = 364
+              Width = 70
+              Height = 21
+              EditLabel.Width = 113
+              EditLabel.Height = 13
+              EditLabel.Caption = 'RewardCurrencyCount2'
+              TabOrder = 14
+            end
+            object edqtRewardCurrencyCount3: TLabeledEdit
+              Left = 139
+              Top = 407
+              Width = 70
+              Height = 21
+              EditLabel.Width = 113
+              EditLabel.Height = 13
+              EditLabel.Caption = 'RewardCurrencyCount3'
+              TabOrder = 15
+            end
+            object edqtRewardCurrencyCount4: TLabeledEdit
+              Left = 139
+              Top = 444
+              Width = 70
+              Height = 21
+              EditLabel.Width = 113
+              EditLabel.Height = 13
+              EditLabel.Caption = 'RewardCurrencyCount4'
+              TabOrder = 16
+            end
+            object edqtRequiredCurrencyId1: TLabeledEdit
+              Left = 331
+              Top = 28
+              Width = 70
+              Height = 21
+              EditLabel.Width = 100
+              EditLabel.Height = 13
+              EditLabel.Caption = 'RequiredCurrencyId1'
+              TabOrder = 17
+            end
+            object edqtRequiredCurrencyCount2: TLabeledEdit
+              Left = 467
+              Top = 76
+              Width = 70
+              Height = 21
+              EditLabel.Width = 119
+              EditLabel.Height = 13
+              EditLabel.Caption = 'RequiredCurrencyCount2'
+              TabOrder = 18
+            end
+            object edqtRequiredCurrencyCount3: TLabeledEdit
+              Left = 467
+              Top = 116
+              Width = 70
+              Height = 21
+              EditLabel.Width = 119
+              EditLabel.Height = 13
+              EditLabel.Caption = 'RequiredCurrencyCount3'
+              TabOrder = 19
+            end
+            object edqtRequiredCurrencyCount4: TLabeledEdit
+              Left = 467
+              Top = 164
+              Width = 70
+              Height = 21
+              EditLabel.Width = 119
+              EditLabel.Height = 13
+              EditLabel.Caption = 'RequiredCurrencyCount4'
+              TabOrder = 20
+            end
+            object edqtRequiredCurrencyId2: TLabeledEdit
+              Left = 331
+              Top = 76
+              Width = 70
+              Height = 21
+              EditLabel.Width = 100
+              EditLabel.Height = 13
+              EditLabel.Caption = 'RequiredCurrencyId2'
+              TabOrder = 21
+            end
+            object edqtRequiredCurrencyId3: TLabeledEdit
+              Left = 331
+              Top = 116
+              Width = 70
+              Height = 21
+              EditLabel.Width = 100
+              EditLabel.Height = 13
+              EditLabel.Caption = 'RequiredCurrencyId3'
+              TabOrder = 22
+            end
+            object edqtQuestGiverTextWindow: TLabeledEdit
+              Left = 331
+              Top = 244
+              Width = 70
+              Height = 21
+              EditLabel.Width = 113
+              EditLabel.Height = 13
+              EditLabel.Caption = 'QuestGiverTextWindow'
+              TabOrder = 23
+            end
+            object edqtQuestGiverTargetName: TLabeledEdit
+              Left = 331
+              Top = 284
+              Width = 70
+              Height = 21
+              EditLabel.Width = 112
+              EditLabel.Height = 13
+              EditLabel.Caption = 'QuestGiverTargetName'
+              TabOrder = 24
+            end
+            object edqtQuestTurnTextWindow: TLabeledEdit
+              Left = 331
+              Top = 324
+              Width = 70
+              Height = 21
+              EditLabel.Width = 110
+              EditLabel.Height = 13
+              EditLabel.Caption = 'QuestTurnTextWindow'
+              TabOrder = 25
+            end
+            object edqtQuestTurnTargetName: TLabeledEdit
+              Left = 331
+              Top = 364
+              Width = 70
+              Height = 21
+              EditLabel.Width = 109
+              EditLabel.Height = 13
+              EditLabel.Caption = 'QuestTurnTargetName'
+              TabOrder = 26
+            end
+            object edqtSoundAccept: TLabeledEdit
+              Left = 187
+              Top = 76
+              Width = 70
+              Height = 21
+              EditLabel.Width = 65
+              EditLabel.Height = 13
+              EditLabel.Caption = 'SoundAccept'
+              TabOrder = 27
+            end
+            object edqtSoundTurnIn: TLabeledEdit
+              Left = 187
+              Top = 116
+              Width = 70
+              Height = 21
+              EditLabel.Width = 62
+              EditLabel.Height = 13
+              EditLabel.Caption = 'SoundTurnIn'
+              TabOrder = 28
             end
           end
         end
         object tsQuestGiver: TTabSheet
           Caption = 'Quest Givers'
-          ImageIndex = 3
+          ImageIndex = 8
           DesignSize = (
             901
             627)
@@ -5118,7 +5405,6 @@ object MainForm: TMainForm
                 Width = 80
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -5181,7 +5467,6 @@ object MainForm: TMainForm
                 Width = 70
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 1
@@ -5379,7 +5664,6 @@ object MainForm: TMainForm
                 Width = 180
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -5430,7 +5714,6 @@ object MainForm: TMainForm
                 Width = 160
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 1
@@ -5458,10 +5741,6 @@ object MainForm: TMainForm
         object tsLocalesQuest: TTabSheet
           Caption = 'Locales Quest'
           ImageIndex = 9
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object gbLocalesQuest: TsGroupBox
             Left = 3
             Top = 3
@@ -5632,10 +5911,6 @@ object MainForm: TMainForm
           Caption = 'SQL-Script Tab'
           ImageIndex = 2
           OnShow = tsScriptTabShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           DesignSize = (
             901
             627)
@@ -5950,7 +6225,6 @@ object MainForm: TMainForm
                 Width = 112
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 1
@@ -8490,7 +8764,6 @@ object MainForm: TMainForm
                 Width = 100
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -8962,7 +9235,6 @@ object MainForm: TMainForm
                 Width = 120
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 1
@@ -9555,7 +9827,6 @@ object MainForm: TMainForm
                 Width = 200
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -10016,7 +10287,6 @@ object MainForm: TMainForm
                 Width = 200
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -10476,7 +10746,6 @@ object MainForm: TMainForm
                 Width = 200
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -11329,7 +11598,6 @@ object MainForm: TMainForm
                 Width = 200
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -12007,7 +12275,6 @@ object MainForm: TMainForm
                 Width = 48
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -12451,10 +12718,6 @@ object MainForm: TMainForm
           Caption = 'Involved in'
           ImageIndex = 11
           OnShow = tsCreatureUsedShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object pcCreatureInfo: TPageControl
             Left = 0
             Top = 41
@@ -12497,7 +12760,6 @@ object MainForm: TMainForm
                     Width = 80
                   end>
                 HideSelection = False
-                Items.ItemData = {}
                 ReadOnly = True
                 RowSelect = True
                 TabOrder = 0
@@ -12554,7 +12816,6 @@ object MainForm: TMainForm
                     Width = 80
                   end>
                 HideSelection = False
-                Items.ItemData = {}
                 ReadOnly = True
                 RowSelect = True
                 TabOrder = 0
@@ -12611,7 +12872,6 @@ object MainForm: TMainForm
                     Width = 80
                   end>
                 HideSelection = False
-                Items.ItemData = {}
                 ReadOnly = True
                 RowSelect = True
                 TabOrder = 0
@@ -12646,10 +12906,6 @@ object MainForm: TMainForm
         object tsCreatureSmartAI: TTabSheet
           Caption = 'SmartAI'
           ImageIndex = 18
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object lbctGoToSmartAI: TLabel
             Left = 15
             Top = 52
@@ -13083,7 +13339,6 @@ object MainForm: TMainForm
                 Width = 36
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -13852,10 +14107,6 @@ object MainForm: TMainForm
           Caption = 'Script'
           ImageIndex = 3
           OnShow = tsCreatureScriptShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           DesignSize = (
             901
             609)
@@ -13918,10 +14169,6 @@ object MainForm: TMainForm
     object tsGameObject: TTabSheet
       Caption = 'Game Object'
       ImageIndex = 3
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel8: TPanel
         Left = 0
         Top = 0
@@ -14201,7 +14448,6 @@ object MainForm: TMainForm
                 Caption = 'castbarcaption_loc*'
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 1
@@ -15288,7 +15534,6 @@ object MainForm: TMainForm
                 Width = 100
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -15832,7 +16077,6 @@ object MainForm: TMainForm
                 Width = 200
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -16047,10 +16291,6 @@ object MainForm: TMainForm
           Caption = 'Involved in'
           ImageIndex = 5
           OnShow = tsGOInvolvedInShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object pcGameObjectInfo: TPageControl
             Left = 0
             Top = 41
@@ -16093,7 +16333,6 @@ object MainForm: TMainForm
                     Width = 80
                   end>
                 HideSelection = False
-                Items.ItemData = {}
                 ReadOnly = True
                 RowSelect = True
                 TabOrder = 0
@@ -16149,7 +16388,6 @@ object MainForm: TMainForm
                     Width = 80
                   end>
                 HideSelection = False
-                Items.ItemData = {}
                 ReadOnly = True
                 RowSelect = True
                 TabOrder = 0
@@ -16205,7 +16443,6 @@ object MainForm: TMainForm
                     Width = 80
                   end>
                 HideSelection = False
-                Items.ItemData = {}
                 ReadOnly = True
                 RowSelect = True
                 TabOrder = 0
@@ -16240,10 +16477,6 @@ object MainForm: TMainForm
         object tsGOSmartAI: TTabSheet
           Caption = 'GO SmartAI'
           ImageIndex = 7
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object lbgtGotoSmartAI: TLabel
             Left = 15
             Top = 67
@@ -16268,10 +16501,6 @@ object MainForm: TMainForm
           Caption = 'Script'
           ImageIndex = 3
           OnShow = tsGOScriptShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           DesignSize = (
             901
             627)
@@ -16325,10 +16554,6 @@ object MainForm: TMainForm
     object tsItem: TTabSheet
       Caption = 'Item'
       ImageIndex = 3
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel9: TPanel
         Left = 0
         Top = 0
@@ -16778,7 +17003,6 @@ object MainForm: TMainForm
             Font.Name = 'MS Sans Serif'
             Font.Style = []
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             ParentFont = False
@@ -20536,7 +20760,6 @@ object MainForm: TMainForm
                 Width = 200
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -21003,7 +21226,6 @@ object MainForm: TMainForm
                 Width = 200
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -21470,7 +21692,6 @@ object MainForm: TMainForm
                 Width = 200
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -21928,7 +22149,6 @@ object MainForm: TMainForm
                 Width = 200
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -22392,7 +22612,6 @@ object MainForm: TMainForm
                 Width = 200
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -22860,7 +23079,6 @@ object MainForm: TMainForm
                 Width = 90
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -22961,7 +23179,6 @@ object MainForm: TMainForm
               item
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -22993,10 +23210,6 @@ object MainForm: TMainForm
           Caption = 'Involved in'
           ImageIndex = 8
           OnShow = tsItemInvolvedInShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object Panel22: TPanel
             Left = 0
             Top = 0
@@ -23048,7 +23261,6 @@ object MainForm: TMainForm
                     Width = 80
                   end>
                 HideSelection = False
-                Items.ItemData = {}
                 ReadOnly = True
                 RowSelect = True
                 TabOrder = 0
@@ -23104,7 +23316,6 @@ object MainForm: TMainForm
                     Width = 80
                   end>
                 HideSelection = False
-                Items.ItemData = {}
                 ReadOnly = True
                 RowSelect = True
                 TabOrder = 0
@@ -23160,7 +23371,6 @@ object MainForm: TMainForm
                     Width = 80
                   end>
                 HideSelection = False
-                Items.ItemData = {}
                 ReadOnly = True
                 RowSelect = True
                 TabOrder = 0
@@ -23216,7 +23426,6 @@ object MainForm: TMainForm
                     Width = 80
                   end>
                 HideSelection = False
-                Items.ItemData = {}
                 ReadOnly = True
                 RowSelect = True
                 TabOrder = 0
@@ -23272,7 +23481,6 @@ object MainForm: TMainForm
                     Width = 80
                   end>
                 HideSelection = False
-                Items.ItemData = {}
                 ReadOnly = True
                 RowSelect = True
                 TabOrder = 0
@@ -23299,10 +23507,6 @@ object MainForm: TMainForm
           Caption = 'Script'
           ImageIndex = 3
           OnShow = tsItemScriptShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           DesignSize = (
             901
             627)
@@ -23356,10 +23560,6 @@ object MainForm: TMainForm
     object SmartAI: TTabSheet
       Caption = 'SmartAI'
       ImageIndex = 5
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object PageControl9: TPageControl
         Left = 0
         Top = 25
@@ -23856,7 +24056,6 @@ object MainForm: TMainForm
               item
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -24351,10 +24550,6 @@ object MainForm: TMainForm
           Caption = 'Script'
           ImageIndex = 1
           OnShow = tsSmartAIScriptShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           DesignSize = (
             873
             620)
@@ -24417,10 +24612,6 @@ object MainForm: TMainForm
     object Conditions: TTabSheet
       Caption = 'Conditions'
       ImageIndex = 5
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object PageControl10: TPageControl
         Left = 0
         Top = 25
@@ -24774,7 +24965,6 @@ object MainForm: TMainForm
                 Width = 135
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -25039,10 +25229,6 @@ object MainForm: TMainForm
           Caption = 'Script'
           ImageIndex = 1
           OnShow = tsConditionsScriptShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           DesignSize = (
             873
             620)
@@ -25105,10 +25291,6 @@ object MainForm: TMainForm
     object tsOther: TTabSheet
       Caption = 'Other'
       ImageIndex = 4
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel12: TPanel
         Left = 0
         Top = 0
@@ -25386,7 +25568,6 @@ object MainForm: TMainForm
                 Width = 200
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 2
@@ -25697,7 +25878,6 @@ object MainForm: TMainForm
                 Caption = 'VerifiedBuild'
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 0
@@ -26504,7 +26684,6 @@ object MainForm: TMainForm
                 end>
               Enabled = False
               HideSelection = False
-              Items.ItemData = {}
               ReadOnly = True
               RowSelect = True
               TabOrder = 0
@@ -26548,7 +26727,6 @@ object MainForm: TMainForm
                 end>
               Enabled = False
               HideSelection = False
-              Items.ItemData = {}
               ReadOnly = True
               RowSelect = True
               TabOrder = 2
@@ -26705,7 +26883,6 @@ object MainForm: TMainForm
                   Caption = 'announce'
                 end>
               HideSelection = False
-              Items.ItemData = {}
               ReadOnly = True
               RowSelect = True
               TabOrder = 0
@@ -27027,10 +27204,6 @@ object MainForm: TMainForm
           Caption = 'Script'
           ImageIndex = 3
           OnShow = tsOtherScriptShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           DesignSize = (
             901
             627)
@@ -27084,10 +27257,6 @@ object MainForm: TMainForm
     object tsChars: TTabSheet
       Caption = 'Character'
       ImageIndex = 6
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel1: TPanel
         Left = 0
         Top = 0
@@ -27254,7 +27423,6 @@ object MainForm: TMainForm
                 Width = 60
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 1
@@ -28416,7 +28584,6 @@ object MainForm: TMainForm
                 Width = 250
               end>
             HideSelection = False
-            Items.ItemData = {}
             ReadOnly = True
             RowSelect = True
             TabOrder = 2
@@ -28481,10 +28648,6 @@ object MainForm: TMainForm
           Caption = 'Script'
           ImageIndex = 2
           OnShow = tsCharacterScriptShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           DesignSize = (
             901
             627)
@@ -28538,10 +28701,6 @@ object MainForm: TMainForm
     object tsSQL: TTabSheet
       Caption = 'SQL'
       ImageIndex = 5
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel14: TPanel
         Left = 0
         Top = 0
@@ -28561,10 +28720,6 @@ object MainForm: TMainForm
         TabOrder = 1
         object tsSQL1: TTabSheet
           Caption = 'Recordset1'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object Panel15: TPanel
             Left = 0
             Top = 0
@@ -28654,7 +28809,7 @@ object MainForm: TMainForm
   end
   object pmQuest: TPopupMenu
     Left = 397
-    Top = 25
+    Top = 17
     object nEditQuest: TMenuItem
       Caption = 'Edit Quest'
       OnClick = btEditQuestClick
@@ -28682,8 +28837,8 @@ object MainForm: TMainForm
     end
   end
   object MainMenu: TMainMenu
-    Left = 312
-    Top = 24
+    Left = 304
+    Top = 8
     object nFile: TMenuItem
       Caption = 'File'
       object nReconnect: TMenuItem
@@ -28768,13 +28923,13 @@ object MainForm: TMainForm
     Connection = MyTrinityConnection
     Params = <>
     Left = 440
-    Top = 24
+    Top = 8
   end
   object MyLootQuery: TZQuery
     Connection = MyTrinityConnection
     Params = <>
     Left = 365
-    Top = 25
+    Top = 9
   end
   object MyQueryAll: TZQuery
     Connection = MyTrinityConnection
@@ -28857,7 +29012,7 @@ object MainForm: TMainForm
   end
   object pmItem: TPopupMenu
     Left = 273
-    Top = 18
+    Top = 10
     object nEditItem: TMenuItem
       Caption = 'Edit Item'
       OnClick = btEditItemClick
@@ -28890,7 +29045,7 @@ object MainForm: TMainForm
   end
   object ActionList1: TActionList
     Left = 336
-    Top = 25
+    Top = 17
     object BrowseURL1: TBrowseURL
       Category = 'Internet'
       Caption = '&Browse URL'
