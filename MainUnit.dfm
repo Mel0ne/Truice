@@ -26,7 +26,7 @@ object MainForm: TMainForm
     Top = 0
     Width = 917
     Height = 708
-    ActivePage = tsCreature
+    ActivePage = tsGameObject
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -13876,7 +13876,7 @@ object MainForm: TMainForm
         Top = 25
         Width = 909
         Height = 655
-        ActivePage = tsGOLocation
+        ActivePage = tsEditGO
         Align = alClient
         TabOrder = 1
         object tsSearchGO: TTabSheet
@@ -14478,8 +14478,8 @@ object MainForm: TMainForm
               Caption = 'type'
             end
             object lbgtflags: TLabel
-              Left = 216
-              Top = 56
+              Left = 292
+              Top = 13
               Width = 22
               Height = 13
               Caption = 'flags'
@@ -14561,9 +14561,9 @@ object MainForm: TMainForm
               TabOrder = 4
             end
             object edgtsize: TLabeledEdit
-              Left = 333
-              Top = 32
-              Width = 107
+              Left = 194
+              Top = 72
+              Width = 60
               Height = 21
               Hint = 
                 'Object'#39's size must be set because graphic models can be resample' +
@@ -14574,7 +14574,7 @@ object MainForm: TMainForm
               TabOrder = 3
             end
             object edgtScriptName: TLabeledEdit
-              Left = 333
+              Left = 271
               Top = 72
               Width = 107
               Height = 21
@@ -14587,7 +14587,7 @@ object MainForm: TMainForm
             object edgtfaction: TJvComboEdit
               Left = 88
               Top = 72
-              Width = 121
+              Width = 89
               Height = 21
               Hint = 'Object'#39's faction, if any.'
               ButtonWidth = 22
@@ -14625,7 +14625,7 @@ object MainForm: TMainForm
             object edgttype: TJvComboEdit
               Left = 216
               Top = 32
-              Width = 110
+              Width = 70
               Height = 21
               Hint = 'Type of gameobject'
               ButtonWidth = 22
@@ -14662,8 +14662,8 @@ object MainForm: TMainForm
               OnChange = edgttypeChange
             end
             object edgtflags: TJvComboEdit
-              Left = 216
-              Top = 72
+              Left = 292
+              Top = 32
               Width = 110
               Height = 21
               ButtonWidth = 22
@@ -14700,9 +14700,9 @@ object MainForm: TMainForm
               OnChange = edflagsChange
             end
             object edgtcastBarCaption: TLabeledEdit
-              Left = 116
+              Left = 95
               Top = 111
-              Width = 98
+              Width = 93
               Height = 21
               EditLabel.Width = 72
               EditLabel.Height = 13
@@ -14712,7 +14712,7 @@ object MainForm: TMainForm
             object edgtIconName: TLabeledEdit
               Left = 8
               Top = 111
-              Width = 100
+              Width = 81
               Height = 21
               EditLabel.Width = 49
               EditLabel.Height = 13
@@ -14720,7 +14720,7 @@ object MainForm: TMainForm
               TabOrder = 9
             end
             object edgtunk1: TLabeledEdit
-              Left = 220
+              Left = 194
               Top = 111
               Width = 66
               Height = 21
@@ -14730,9 +14730,9 @@ object MainForm: TMainForm
               TabOrder = 10
             end
             object edgtVerifiedBuild: TLabeledEdit
-              Left = 292
-              Top = 111
-              Width = 60
+              Left = 390
+              Top = 72
+              Width = 70
               Height = 21
               EditLabel.Width = 58
               EditLabel.Height = 13
@@ -14740,14 +14740,24 @@ object MainForm: TMainForm
               TabOrder = 11
             end
             object edgtAIName: TLabeledEdit
-              Left = 356
+              Left = 366
               Top = 111
-              Width = 91
+              Width = 94
               Height = 21
               EditLabel.Width = 38
               EditLabel.Height = 13
               EditLabel.Caption = 'AIName'
               TabOrder = 12
+            end
+            object edgtunkInt32: TLabeledEdit
+              Left = 271
+              Top = 111
+              Width = 74
+              Height = 21
+              EditLabel.Width = 42
+              EditLabel.Height = 13
+              EditLabel.Caption = 'unkInt32'
+              TabOrder = 13
             end
           end
           object btScriptGOTemplate: TButton
@@ -14762,8 +14772,8 @@ object MainForm: TMainForm
           object gbGOsounds: TGroupBox
             Left = 8
             Top = 162
-            Width = 457
-            Height = 265
+            Width = 712
+            Height = 281
             Hint = 
               'Data fields specific for different type field values. Each type ' +
               'has unique fields.'
@@ -14810,8 +14820,8 @@ object MainForm: TMainForm
               TabOrder = 3
             end
             object edgtdata4: TLabeledEdit
-              Left = 8
-              Top = 72
+              Left = 466
+              Top = 32
               Width = 100
               Height = 21
               EditLabel.Width = 48
@@ -14820,8 +14830,8 @@ object MainForm: TMainForm
               TabOrder = 4
             end
             object edgtdata5: TLabeledEdit
-              Left = 120
-              Top = 72
+              Left = 594
+              Top = 32
               Width = 100
               Height = 21
               EditLabel.Width = 48
@@ -14830,7 +14840,7 @@ object MainForm: TMainForm
               TabOrder = 5
             end
             object edgtdata6: TLabeledEdit
-              Left = 232
+              Left = 3
               Top = 72
               Width = 100
               Height = 21
@@ -14840,7 +14850,7 @@ object MainForm: TMainForm
               TabOrder = 6
             end
             object edgtdata7: TLabeledEdit
-              Left = 344
+              Left = 120
               Top = 72
               Width = 100
               Height = 21
@@ -14850,8 +14860,8 @@ object MainForm: TMainForm
               TabOrder = 7
             end
             object edgtdata8: TLabeledEdit
-              Left = 8
-              Top = 112
+              Left = 232
+              Top = 72
               Width = 100
               Height = 21
               EditLabel.Width = 48
@@ -14860,8 +14870,8 @@ object MainForm: TMainForm
               TabOrder = 8
             end
             object edgtdata9: TLabeledEdit
-              Left = 120
-              Top = 112
+              Left = 344
+              Top = 72
               Width = 100
               Height = 21
               EditLabel.Width = 48
@@ -14870,8 +14880,8 @@ object MainForm: TMainForm
               TabOrder = 9
             end
             object edgtdata10: TLabeledEdit
-              Left = 232
-              Top = 112
+              Left = 466
+              Top = 72
               Width = 100
               Height = 21
               EditLabel.Width = 54
@@ -14880,8 +14890,8 @@ object MainForm: TMainForm
               TabOrder = 10
             end
             object edgtdata12: TLabeledEdit
-              Left = 8
-              Top = 152
+              Left = 3
+              Top = 120
               Width = 100
               Height = 21
               EditLabel.Width = 54
@@ -14891,7 +14901,7 @@ object MainForm: TMainForm
             end
             object edgtdata13: TLabeledEdit
               Left = 120
-              Top = 152
+              Top = 120
               Width = 100
               Height = 21
               EditLabel.Width = 54
@@ -14901,7 +14911,7 @@ object MainForm: TMainForm
             end
             object edgtdata14: TLabeledEdit
               Left = 232
-              Top = 152
+              Top = 120
               Width = 100
               Height = 21
               EditLabel.Width = 54
@@ -14911,7 +14921,7 @@ object MainForm: TMainForm
             end
             object edgtdata15: TLabeledEdit
               Left = 344
-              Top = 152
+              Top = 120
               Width = 100
               Height = 21
               EditLabel.Width = 54
@@ -14920,8 +14930,8 @@ object MainForm: TMainForm
               TabOrder = 15
             end
             object edgtdata16: TLabeledEdit
-              Left = 8
-              Top = 192
+              Left = 466
+              Top = 120
               Width = 100
               Height = 21
               EditLabel.Width = 54
@@ -14930,8 +14940,8 @@ object MainForm: TMainForm
               TabOrder = 16
             end
             object edgtdata17: TLabeledEdit
-              Left = 120
-              Top = 192
+              Left = 594
+              Top = 120
               Width = 100
               Height = 21
               EditLabel.Width = 54
@@ -14940,8 +14950,8 @@ object MainForm: TMainForm
               TabOrder = 17
             end
             object edgtdata18: TLabeledEdit
-              Left = 232
-              Top = 192
+              Left = 3
+              Top = 160
               Width = 100
               Height = 21
               EditLabel.Width = 54
@@ -14950,8 +14960,8 @@ object MainForm: TMainForm
               TabOrder = 18
             end
             object edgtdata19: TLabeledEdit
-              Left = 344
-              Top = 192
+              Left = 120
+              Top = 160
               Width = 100
               Height = 21
               EditLabel.Width = 54
@@ -14960,8 +14970,8 @@ object MainForm: TMainForm
               TabOrder = 19
             end
             object edgtdata11: TLabeledEdit
-              Left = 344
-              Top = 112
+              Left = 594
+              Top = 72
               Width = 100
               Height = 21
               EditLabel.Width = 54
@@ -14970,8 +14980,8 @@ object MainForm: TMainForm
               TabOrder = 11
             end
             object edgtdata20: TLabeledEdit
-              Left = 8
-              Top = 232
+              Left = 232
+              Top = 160
               Width = 100
               Height = 21
               EditLabel.Width = 54
@@ -14980,8 +14990,8 @@ object MainForm: TMainForm
               TabOrder = 20
             end
             object edgtdata21: TLabeledEdit
-              Left = 120
-              Top = 232
+              Left = 344
+              Top = 160
               Width = 100
               Height = 21
               EditLabel.Width = 54
@@ -14990,8 +15000,8 @@ object MainForm: TMainForm
               TabOrder = 21
             end
             object edgtdata22: TLabeledEdit
-              Left = 232
-              Top = 232
+              Left = 466
+              Top = 160
               Width = 100
               Height = 21
               EditLabel.Width = 54
@@ -15000,14 +15010,94 @@ object MainForm: TMainForm
               TabOrder = 22
             end
             object edgtdata23: TLabeledEdit
-              Left = 344
-              Top = 232
+              Left = 594
+              Top = 160
               Width = 100
               Height = 21
               EditLabel.Width = 54
               EditLabel.Height = 13
               EditLabel.Caption = 'edgtdata23'
               TabOrder = 23
+            end
+            object edgtdata24: TLabeledEdit
+              Left = 0
+              Top = 200
+              Width = 100
+              Height = 21
+              EditLabel.Width = 54
+              EditLabel.Height = 13
+              EditLabel.Caption = 'edgtdata24'
+              TabOrder = 24
+            end
+            object edgtdata25: TLabeledEdit
+              Left = 120
+              Top = 200
+              Width = 100
+              Height = 21
+              EditLabel.Width = 54
+              EditLabel.Height = 13
+              EditLabel.Caption = 'edgtdata25'
+              TabOrder = 25
+            end
+            object edgtdata26: TLabeledEdit
+              Left = 232
+              Top = 200
+              Width = 100
+              Height = 21
+              EditLabel.Width = 54
+              EditLabel.Height = 13
+              EditLabel.Caption = 'edgtdata26'
+              TabOrder = 26
+            end
+            object edgtdata27: TLabeledEdit
+              Left = 344
+              Top = 200
+              Width = 100
+              Height = 21
+              EditLabel.Width = 54
+              EditLabel.Height = 13
+              EditLabel.Caption = 'edgtdata27'
+              TabOrder = 27
+            end
+            object edgtdata28: TLabeledEdit
+              Left = 466
+              Top = 200
+              Width = 100
+              Height = 21
+              EditLabel.Width = 54
+              EditLabel.Height = 13
+              EditLabel.Caption = 'edgtdata28'
+              TabOrder = 28
+            end
+            object edgtdata29: TLabeledEdit
+              Left = 594
+              Top = 200
+              Width = 100
+              Height = 21
+              EditLabel.Width = 54
+              EditLabel.Height = 13
+              EditLabel.Caption = 'edgtdata29'
+              TabOrder = 29
+            end
+            object edgtdata30: TLabeledEdit
+              Left = 3
+              Top = 240
+              Width = 100
+              Height = 21
+              EditLabel.Width = 54
+              EditLabel.Height = 13
+              EditLabel.Caption = 'edgtdata30'
+              TabOrder = 30
+            end
+            object edgtdata31: TLabeledEdit
+              Left = 120
+              Top = 240
+              Width = 100
+              Height = 21
+              EditLabel.Width = 54
+              EditLabel.Height = 13
+              EditLabel.Caption = 'edgtdata31'
+              TabOrder = 31
             end
           end
           object gbGOQuestItems: TGroupBox

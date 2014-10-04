@@ -1663,6 +1663,15 @@ type
     edctRangeVariance: TLabeledEdit;
     edctBaseVariance: TLabeledEdit;
     GroupBox4: TGroupBox;
+    edgtunkInt32: TLabeledEdit;
+    edgtdata24: TLabeledEdit;
+    edgtdata25: TLabeledEdit;
+    edgtdata26: TLabeledEdit;
+    edgtdata27: TLabeledEdit;
+    edgtdata28: TLabeledEdit;
+    edgtdata29: TLabeledEdit;
+    edgtdata30: TLabeledEdit;
+    edgtdata31: TLabeledEdit;
     procedure FormActivate(Sender: TObject);
     procedure btSearchClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -6248,7 +6257,7 @@ begin
   if (coentry='') or (coitem='') then Exit;
   SetFieldsAndValues(Fields, Values, 'creature_loot_template', PFX_CREATURE_LOOT_TEMPLATE, mectLog);
   mectScript.Text := Format('DELETE FROM `creature_loot_template` WHERE (`entry`=%s) AND (`item`=%s);'#13#10+
-    'INSERT INTO `creature_loot_template` (%s) VALUES (%s);'#13#10,[coentry, coitem, Fields, Values])
+    'INSERT INTO `creature_loot_template` (%s) VALUES '#13#10'(%s);'#13#10,[coentry, coitem, Fields, Values])
 end;
 
 procedure TMainForm.CompletePickpocketLootScript;
@@ -6261,7 +6270,7 @@ begin
   if (cpEntry='') or (cpItem='') then Exit;
   SetFieldsAndValues(Fields, Values, 'pickpocketing_loot_template', PFX_PICKPOCKETING_LOOT_TEMPLATE, mectLog);
   mectScript.Text := Format('DELETE FROM `pickpocketing_loot_template` WHERE (`Entry`=%s) AND (`Item`=%s);'#13#10+
-   'INSERT INTO `pickpocketing_loot_template` (%s) VALUES (%s);'#13#10,[cpEntry, cpItem, Fields, Values])
+   'INSERT INTO `pickpocketing_loot_template` (%s) VALUES '#13#10'(%s);'#13#10,[cpEntry, cpItem, Fields, Values])
 end;
 
 procedure TMainForm.CompleteSkinLootScript;
@@ -6274,7 +6283,7 @@ begin
   if (csentry='') or (csitem='') then Exit;
   SetFieldsAndValues(Fields, Values, 'skinning_loot_template', PFX_SKINNING_LOOT_TEMPLATE, mectLog);
   mectScript.Text := Format('DELETE FROM `skinning_loot_template` WHERE (`Entry`=%s) AND (`Item`=%s);'#13#10+
-    'INSERT INTO `skinning_loot_template` (%s) VALUES (%s);'#13#10,[csentry, csitem, Fields, Values])
+    'INSERT INTO `skinning_loot_template` (%s) VALUES '#13#10'(%s);'#13#10,[csentry, csitem, Fields, Values])
 end;
 
 function TMainForm.Connect: boolean;
@@ -6784,8 +6793,8 @@ begin
   SetFieldsAndValues(Fields, Values, 'gameobject_template', PFX_GAMEOBJECT_TEMPLATE, megoLog);
   case SyntaxStyle of
     ssInsertDelete: meGOScript.Text := Format('DELETE FROM `gameobject_template` WHERE (`entry`=%s);'#13#10+
-      'INSERT INTO `gameobject_template` (%s) VALUES (%s);'#13#10,[gtentry, Fields, Values]);
-    ssReplace: meGOScript.Text := Format('REPLACE INTO `gameobject_template` (%s) VALUES (%s);'#13#10,[Fields, Values]);
+      'INSERT INTO `gameobject_template` (%s) VALUES '+#13#10+' (%s);'#13#10,[gtentry, Fields, Values]);
+    ssReplace: meGOScript.Text := Format('REPLACE INTO `gameobject_template` (%s) VALUES '+#13#10+' (%s);'#13#10,[Fields, Values]);
     ssUpdate: megoScript.Text := MakeUpdate('gameobject_template', PFX_GAMEOBJECT_TEMPLATE, 'entry', gtentry);
   end;
 end;
