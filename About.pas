@@ -117,7 +117,7 @@ end;
 
 procedure TAboutBox.LinkSiteClick(Sender: TObject);
 begin
-  BrowseURL1.URL:='http://github.com/Faq/Truice';
+  BrowseURL1.URL:='http://github.com/chaosua/Truice';
   BrowseURL1.Execute;
 end;
 

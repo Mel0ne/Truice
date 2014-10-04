@@ -5,8 +5,7 @@ Truice is a database editor specifically made for TrinityCore. It is a fork of Q
 
 You can edit quests, creatures, gameobjects, items, loot, EventAI (creature_ai_scripts), SmartAI (smart_scripts), conditions and some minor things.
 
-It is written in Delphi using Embarcadero Delphi XE2 and the source is available under http://github.com/Faq/Truice
-and precompiled binarys under http://www.trinitycore.org/f/files/file/8-truice/
+It is written in Delphi using Embarcadero Delphi XE and the source is available under http://github.com/chaosua/Truice
 
 To compile use Delphi XE2 and next additional components:
 
@@ -29,10 +28,5 @@ AlphaControls 2013 v8.41
 http://www.alphaskins.com/
 
 Original topic on TC forum:
-http://www.trinitycore.org/f/topic/180-bin-truice-win32/  (old topic)
-http://www.trinitycore.org/f/topic/7639-bin-truice-win32/ (new topic)
-
-Truice Download:
-http://www.trinitycore.org/f/files/category/2-tools/
-
-Author: Faq
+EN: http://www.trinitycore.org/f/topic/7639-bin-truice-win32/
+RU: http://trinity-core.ru/threads/truice.7924/

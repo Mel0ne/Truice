@@ -2001,7 +2001,7 @@ object AboutBox: TAboutBox
         WordWrap = True
       end
       object LinkSite: TLabel
-        Left = 108
+        Left = 106
         Top = 116
         Width = 169
         Height = 13
