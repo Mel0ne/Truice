@@ -26,7 +26,7 @@ object MainForm: TMainForm
     Top = 0
     Width = 917
     Height = 708
-    ActivePage = tsItem
+    ActivePage = tsCreature
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -5677,7 +5677,7 @@ object MainForm: TMainForm
         Top = 25
         Width = 909
         Height = 655
-        ActivePage = tsPickpocketLoot
+        ActivePage = tsCreatureLocation
         Align = alClient
         MultiLine = True
         TabOrder = 0
@@ -8546,42 +8546,6 @@ object MainForm: TMainForm
             EditLabel.Caption = 'edclcurrentwaypoint'
             TabOrder = 11
           end
-          object edclspawn_position_x: TLabeledEdit
-            Left = 375
-            Top = 448
-            Width = 81
-            Height = 21
-            Hint = 'Position of the creature'#39's spawn point on X axis.'
-            EditLabel.Width = 104
-            EditLabel.Height = 13
-            EditLabel.Caption = 'edclspawn_position_x'
-            TabOrder = 12
-            Visible = False
-          end
-          object edclspawn_position_y: TLabeledEdit
-            Left = 463
-            Top = 448
-            Width = 81
-            Height = 21
-            Hint = 'Position of the creature'#39's spawn point on Y axis.'
-            EditLabel.Width = 104
-            EditLabel.Height = 13
-            EditLabel.Caption = 'edclspawn_position_y'
-            TabOrder = 13
-            Visible = False
-          end
-          object edclspawn_position_z: TLabeledEdit
-            Left = 551
-            Top = 448
-            Width = 81
-            Height = 21
-            Hint = 'Position of the creature'#39's spawn point on Z axis.'
-            EditLabel.Width = 104
-            EditLabel.Height = 13
-            EditLabel.Caption = 'edclspawn_position_z'
-            TabOrder = 14
-            Visible = False
-          end
           object edclcurhealth: TLabeledEdit
             Left = 8
             Top = 488
@@ -8591,7 +8555,7 @@ object MainForm: TMainForm
             EditLabel.Width = 64
             EditLabel.Height = 13
             EditLabel.Caption = 'edclcurhealth'
-            TabOrder = 16
+            TabOrder = 13
           end
           object edclcurmana: TLabeledEdit
             Left = 96
@@ -8602,7 +8566,7 @@ object MainForm: TMainForm
             EditLabel.Width = 61
             EditLabel.Height = 13
             EditLabel.Caption = 'edclcurmana'
-            TabOrder = 17
+            TabOrder = 14
           end
           object edclMovementType: TLabeledEdit
             Left = 198
@@ -8612,7 +8576,7 @@ object MainForm: TMainForm
             EditLabel.Width = 94
             EditLabel.Height = 13
             EditLabel.Caption = 'edclMovementType'
-            TabOrder = 18
+            TabOrder = 15
           end
           object btScriptCreatureLocation: TButton
             Left = 8
@@ -8620,21 +8584,8 @@ object MainForm: TMainForm
             Width = 169
             Height = 25
             Caption = 'Show Creature Location Script'
-            TabOrder = 19
+            TabOrder = 16
             OnClick = btScriptCreatureClick
-          end
-          object btScriptCreatureLocationCustomToAll: TButton
-            Left = 200
-            Top = 520
-            Width = 169
-            Height = 25
-            Hint = 
-              'Add / Replace entered values to all creatures at list.'#13#10'Press th' +
-              'is button to generate UPDATE script for this.'
-            Caption = 'Add to all'
-            TabOrder = 20
-            Visible = False
-            OnClick = btScriptCreatureLocationCustomToAllClick
           end
           object btFullScriptCreatureLocation: TButton
             Left = 670
@@ -8646,7 +8597,7 @@ object MainForm: TMainForm
               'ipt for location, then execute it first.'
             Anchors = [akTop, akRight]
             Caption = 'Show FULL Creature Location Script'
-            TabOrder = 21
+            TabOrder = 17
             OnClick = btFullScriptCreatureLocationClick
           end
           object edclequipment_id: TLabeledEdit
@@ -8668,7 +8619,7 @@ object MainForm: TMainForm
             EditLabel.Width = 56
             EditLabel.Height = 13
             EditLabel.Caption = 'edclmodelid'
-            TabOrder = 15
+            TabOrder = 12
           end
           object edclmap: TJvComboEdit
             Left = 200
@@ -8716,7 +8667,7 @@ object MainForm: TMainForm
             EditLabel.Width = 75
             EditLabel.Height = 13
             EditLabel.Caption = 'edclphaseMask'
-            TabOrder = 22
+            TabOrder = 18
           end
           object edclspawnMask: TJvComboEdit
             Left = 642
@@ -8752,7 +8703,7 @@ object MainForm: TMainForm
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-            TabOrder = 23
+            TabOrder = 19
             OnButtonClick = GetSpawnMask
           end
           object edclnpcflag: TJvComboEdit
@@ -8787,7 +8738,7 @@ object MainForm: TMainForm
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-            TabOrder = 24
+            TabOrder = 20
             OnButtonClick = edctnpcflagButtonClick
           end
           object edclunit_flags: TJvComboEdit
@@ -8822,7 +8773,7 @@ object MainForm: TMainForm
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-            TabOrder = 25
+            TabOrder = 21
             OnButtonClick = GetUnitFlags
           end
           object edcldynamicflags: TJvComboEdit
@@ -8857,7 +8808,7 @@ object MainForm: TMainForm
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-            TabOrder = 26
+            TabOrder = 22
             OnButtonClick = GetCreatureDynamicFlags
           end
         end

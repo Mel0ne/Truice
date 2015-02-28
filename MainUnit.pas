@@ -421,14 +421,10 @@ type
     edclspawntimesecs: TLabeledEdit;
     edclspawndist: TLabeledEdit;
     edclcurrentwaypoint: TLabeledEdit;
-    edclspawn_position_x: TLabeledEdit;
-    edclspawn_position_y: TLabeledEdit;
-    edclspawn_position_z: TLabeledEdit;
     edclcurhealth: TLabeledEdit;
     edclcurmana: TLabeledEdit;
     edclMovementType: TLabeledEdit;
     btScriptCreatureLocation: TButton;
-    btScriptCreatureLocationCustomToAll: TButton;
     tsCreatureLoot: TTabSheet;
     lbcoitem: TLabel;
     btCreatureLootAdd: TSpeedButton;
