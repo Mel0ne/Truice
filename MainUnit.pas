@@ -910,6 +910,9 @@ type
     edglspawntimesecs: TLabeledEdit;
     edglanimprogress: TLabeledEdit;
     edglstate: TLabeledEdit;
+    edglzoneId: TLabeledEdit;
+    edglareaId: TLabeledEdit;
+    edglVerifiedBuild: TLabeledEdit;
     lbglGOLocationHint: TLabel;
     lbitItemLootHint: TLabel;
     lbitDisLootHint: TLabel;
