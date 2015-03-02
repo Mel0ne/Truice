@@ -1589,6 +1589,9 @@ type
     edgtAIName: TLabeledEdit;
     edclnpcflag: TJvComboEdit;
     edclunit_flags: TJvComboEdit;
+    edclzoneId: TLabeledEdit;
+    edclareaId: TLabeledEdit;
+    edclVerifiedBuild: TLabeledEdit;
     edcldynamicflags: TJvComboEdit;
     lbclnpcflag: TLabel;
     lbclunit_flags: TLabel;
