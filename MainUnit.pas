@@ -421,14 +421,10 @@ type
     edclspawntimesecs: TLabeledEdit;
     edclspawndist: TLabeledEdit;
     edclcurrentwaypoint: TLabeledEdit;
-    edclspawn_position_x: TLabeledEdit;
-    edclspawn_position_y: TLabeledEdit;
-    edclspawn_position_z: TLabeledEdit;
     edclcurhealth: TLabeledEdit;
     edclcurmana: TLabeledEdit;
     edclMovementType: TLabeledEdit;
     btScriptCreatureLocation: TButton;
-    btScriptCreatureLocationCustomToAll: TButton;
     tsCreatureLoot: TTabSheet;
     lbcoitem: TLabel;
     btCreatureLootAdd: TSpeedButton;
@@ -914,6 +910,9 @@ type
     edglspawntimesecs: TLabeledEdit;
     edglanimprogress: TLabeledEdit;
     edglstate: TLabeledEdit;
+    edglzoneId: TLabeledEdit;
+    edglareaId: TLabeledEdit;
+    edglVerifiedBuild: TLabeledEdit;
     lbglGOLocationHint: TLabel;
     lbitItemLootHint: TLabel;
     lbitDisLootHint: TLabel;
@@ -1593,6 +1592,9 @@ type
     edgtAIName: TLabeledEdit;
     edclnpcflag: TJvComboEdit;
     edclunit_flags: TJvComboEdit;
+    edclzoneId: TLabeledEdit;
+    edclareaId: TLabeledEdit;
+    edclVerifiedBuild: TLabeledEdit;
     edcldynamicflags: TJvComboEdit;
     lbclnpcflag: TLabel;
     lbclunit_flags: TLabel;
